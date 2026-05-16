@@ -146,15 +146,6 @@ export default function HeroSection() {
             <span className="relative z-10">View work</span>
             <span className="absolute inset-0 -translate-x-full bg-fg transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
           </a>
-          <a
-            href="#contact"
-            data-cursor="hover"
-            data-magnet
-            data-magnet-strength="0.45"
-            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-bg transition-opacity hover:opacity-80"
-          >
-            Hire me →
-          </a>
         </div>
       </motion.div>
 
