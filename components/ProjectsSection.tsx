@@ -110,7 +110,7 @@ export default function ProjectsSection() {
               }}
               data-cursor="view"
               data-cursor-label="Open"
-              className="group relative mt-4 aspect-[4/5] w-full cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-bg-soft"
+              className="group relative mt-4 aspect-[4/5] w-full cursor-pointer overflow-hidden rounded-3xl border border-fg/10 bg-bg-soft"
             >
               <div className="absolute inset-0">
                 <Image
@@ -124,7 +124,7 @@ export default function ProjectsSection() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
               <div className="absolute left-5 top-5">
                 <span
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-bg/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-fg backdrop-blur"
+                  className="inline-flex items-center gap-2 rounded-full border border-fg/15 bg-bg/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-fg backdrop-blur"
                 >
                   <span
                     className="inline-block h-1.5 w-1.5 rounded-full"
@@ -138,7 +138,7 @@ export default function ProjectsSection() {
                   {p.title}
                 </h3>
                 <span
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full text-bg transition-transform duration-500 group-hover:rotate-45"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full text-on-accent transition-transform duration-500 group-hover:rotate-45"
                   style={{ background: p.accent }}
                 >
                   →
@@ -165,7 +165,7 @@ export default function ProjectsSection() {
             data-cursor="hover"
             data-magnet
             data-magnet-strength="0.45"
-            className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-bg transition-colors hover:bg-fg"
+            className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-on-accent transition-colors hover:bg-fg"
           >
             Let's talk →
           </a>
@@ -176,7 +176,7 @@ export default function ProjectsSection() {
       <div className="pointer-events-none absolute inset-x-0 bottom-6 z-20 px-6 sm:px-10">
         <div className="mx-auto flex max-w-[1600px] items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-fg-muted">
           <span className="hidden sm:inline">scroll progress</span>
-          <div className="relative h-px flex-1 bg-white/10">
+          <div className="relative h-px flex-1 bg-fg/10">
             <div
               data-scroll-bar
               className="absolute inset-y-0 left-0 origin-left bg-accent"

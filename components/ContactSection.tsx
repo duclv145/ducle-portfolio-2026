@@ -10,7 +10,7 @@ export default function ContactSection() {
       className="relative z-10 w-full overflow-hidden px-6 pt-32 pb-12 sm:px-10 sm:pt-40"
     >
       <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-x-4 gap-y-12">
-        <div className="col-span-12 flex items-end justify-between gap-6 border-b border-white/10 pb-6">
+        <div className="col-span-12 flex items-end justify-between gap-6 border-b border-fg/10 pb-6">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
             · 04 · Contact
           </p>

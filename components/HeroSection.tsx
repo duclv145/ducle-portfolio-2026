@@ -34,7 +34,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6, ease }}
-        className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 py-4 font-mono text-[10px] uppercase tracking-[0.2em] text-fg-muted"
+        className="flex flex-wrap items-center justify-between gap-2 border-b border-fg/10 py-4 font-mono text-[10px] uppercase tracking-[0.2em] text-fg-muted"
       >
         <span className="flex items-center gap-2">
           <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse inline-block" />
@@ -85,7 +85,7 @@ export default function HeroSection() {
             transition={{ delay: 1.6, duration: 0.6 }}
             className="mt-8 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted"
           >
-            <span className="inline-block h-px w-8 bg-white/20" />
+            <span className="inline-block h-px w-8 bg-fg/20" />
             scroll to explore
           </motion.div>
         </motion.div>
@@ -100,7 +100,7 @@ export default function HeroSection() {
         >
           {/* Name badge + avatar */}
           <div className="flex items-center gap-4">
-            <div className="relative h-[150px] w-[150px] flex-shrink-0 overflow-hidden rounded-full border border-white/20">
+            <div className="relative h-[150px] w-[150px] flex-shrink-0 overflow-hidden rounded-full border border-fg/20">
               <img src="/avatar.jpg" alt="Duc Le" className="h-full w-full object-cover" />
             </div>
             <div className="border-l-2 border-accent pl-5">
@@ -129,7 +129,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.0, duration: 0.7, ease }}
-        className="flex items-center justify-between gap-4 border-t border-white/10 py-5"
+        className="flex items-center justify-between gap-4 border-t border-fg/10 py-5"
       >
         <p className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-fg-muted sm:block">
           Phu My Hung · Yeah1 · FPT · DVH-Bransons
@@ -141,7 +141,7 @@ export default function HeroSection() {
             data-cursor-label="View"
             data-magnet
             data-magnet-strength="0.45"
-            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-fg/30 px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-fg transition-colors hover:text-bg"
+            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-fg/30 px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-fg transition-colors hover:text-on-accent"
           >
             <span className="relative z-10">View work</span>
             <span className="absolute inset-0 -translate-x-full bg-fg transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
@@ -151,7 +151,7 @@ export default function HeroSection() {
             data-cursor="hover"
             data-magnet
             data-magnet-strength="0.45"
-            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-bg transition-opacity hover:opacity-80"
+            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-on-accent transition-opacity hover:opacity-80"
           >
             Hire me →
           </a>

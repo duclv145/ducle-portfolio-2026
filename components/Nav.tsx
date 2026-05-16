@@ -27,7 +27,7 @@ export default function Nav() {
         >
           duc<span className="text-accent">.</span>le
         </a>
-        <ul className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1.5 backdrop-blur-md md:flex">
+        <ul className="hidden items-center gap-1 rounded-full border border-fg/10 bg-fg/5 px-2 py-1.5 backdrop-blur-md md:flex">
           {links.map((l) => (
             <li key={l.href}>
               <a
@@ -48,7 +48,7 @@ data-cursor="hover"
           data-cursor-label="Say hi"
           data-magnet
           data-magnet-strength="0.5"
-          className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-bg transition-colors hover:bg-fg"
+          className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-on-accent transition-colors hover:bg-fg"
         >
           Let&rsquo;s talk
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-bg transition-transform group-hover:translate-x-0.5" />

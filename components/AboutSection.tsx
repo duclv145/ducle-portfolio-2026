@@ -33,7 +33,7 @@ export default function AboutSection() {
     <section id="about" ref={ref} className="relative z-10 w-full px-6 sm:px-10">
 
       {/* Marquee strip */}
-      <div className="overflow-hidden border-y border-white/10 bg-bg/40 backdrop-blur-sm">
+      <div className="overflow-hidden border-y border-fg/10 bg-bg/40 backdrop-blur-sm">
         <div className="flex w-max animate-marquee items-center gap-10 py-3 font-display text-xl italic text-fg/60 sm:text-2xl">
           {Array.from({ length: 2 }).map((_, k) => (
             <div key={k} className="flex items-center gap-10">
@@ -51,7 +51,7 @@ export default function AboutSection() {
       <div className="mx-auto max-w-[1400px] py-20 sm:py-28">
 
         {/* Section label row */}
-        <div className="mb-12 flex items-center justify-between border-b border-white/10 pb-6">
+        <div className="mb-12 flex items-center justify-between border-b border-fg/10 pb-6">
           <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-accent">· 03 · About</p>
           <a
             href={`mailto:${profile.email}`}
@@ -77,18 +77,18 @@ export default function AboutSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{ delay: i * 0.07, duration: 0.5, ease }}
-                  className="grid grid-cols-[8px_1fr] gap-x-4 border-b border-white/10 py-5 first:border-t"
+                  className="grid grid-cols-[8px_1fr] gap-x-4 border-b border-fg/10 py-5 first:border-t"
                 >
                   {/* dot + line */}
                   <div className="flex flex-col items-center pt-[5px]">
                     <span className="h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
-                    {i < experience.length - 1 && <span className="mt-2 w-px flex-1 bg-white/10" />}
+                    {i < experience.length - 1 && <span className="mt-2 w-px flex-1 bg-fg/10" />}
                   </div>
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">{e.period}</p>
                     <p className="mt-1.5 text-[15px] font-medium leading-snug text-fg">{e.company}</p>
                     {e.sub && <p className="text-sm text-fg/45 leading-snug">{e.sub}</p>}
-                    <span className="mt-2 inline-block rounded-full border border-white/12 bg-white/5 px-3 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-fg-muted">
+                    <span className="mt-2 inline-block rounded-full border border-fg/12 bg-fg/5 px-3 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-fg-muted">
                       {e.role}
                     </span>
                   </div>
@@ -109,7 +109,7 @@ export default function AboutSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{ delay: i * 0.08, duration: 0.5, ease }}
-                  className="border-b border-white/10 py-5 first:border-t"
+                  className="border-b border-fg/10 py-5 first:border-t"
                 >
                   <p className="text-[15px] font-medium text-fg leading-snug">{ed.school}</p>
                   <div className="mt-2 space-y-1">
@@ -136,7 +136,7 @@ export default function AboutSection() {
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ delay: i * 0.07, duration: 0.45, ease }}
                     data-cursor="hover"
-                    className="rounded-full border border-white/12 bg-white/5 px-4 py-2 text-sm text-fg/80 backdrop-blur transition-colors hover:border-accent/50 hover:text-accent whitespace-nowrap"
+                    className="rounded-full border border-fg/12 bg-fg/5 px-4 py-2 text-sm text-fg/80 backdrop-blur transition-colors hover:border-accent/50 hover:text-accent whitespace-nowrap"
                   >
                     {s}
                   </motion.li>
@@ -155,7 +155,7 @@ export default function AboutSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ delay: i * 0.07, duration: 0.45, ease }}
-                    className="font-mono text-[11px] uppercase tracking-[0.16em] text-fg-muted border-b border-white/10 py-2 last:border-0"
+                    className="font-mono text-[11px] uppercase tracking-[0.16em] text-fg-muted border-b border-fg/10 py-2 last:border-0"
                   >
                     {s}
                   </motion.li>

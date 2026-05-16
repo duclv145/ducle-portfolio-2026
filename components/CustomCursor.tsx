@@ -11,15 +11,15 @@ const variantConfig: Record<
 > = {
   default: {
     size: 14,
-    mix: "difference",
-    bg: "rgba(245,245,247,1)",
-    border: "rgba(245,245,247,0)",
+    mix: "normal",
+    bg: "rgba(10,10,15,1)",
+    border: "rgba(10,10,15,0)",
   },
   hover: {
     size: 64,
-    mix: "difference",
-    bg: "rgba(245,245,247,1)",
-    border: "rgba(245,245,247,0)",
+    mix: "normal",
+    bg: "rgba(10,10,15,0.12)",
+    border: "rgba(10,10,15,0)",
   },
   view: {
     size: 96,
@@ -158,7 +158,7 @@ export default function CustomCursor() {
       {/* small dot */}
       <motion.div
         style={{ transform: dotTranslate }}
-        className="pointer-events-none fixed left-0 top-0 h-2.5 w-2.5 rounded-full bg-fg mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 h-2.5 w-2.5 rounded-full bg-fg"
       />
       {/* expanding ring */}
       <motion.div
@@ -169,7 +169,7 @@ export default function CustomCursor() {
         animate={{
           width: cfg.size,
           height: cfg.size,
-          backgroundColor: variant === "default" ? "rgba(245,245,247,0)" : cfg.bg,
+          backgroundColor: variant === "default" ? "rgba(10,10,15,0)" : cfg.bg,
           borderColor: cfg.border,
         }}
         transition={{ type: "spring", damping: 22, stiffness: 220, mass: 0.5 }}
@@ -180,7 +180,7 @@ export default function CustomCursor() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="font-mono text-[10px] uppercase tracking-[0.18em] text-bg select-none"
+            className="font-mono text-[10px] uppercase tracking-[0.18em] text-on-accent select-none"
           >
             {label}
           </motion.span>
