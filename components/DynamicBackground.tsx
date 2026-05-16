@@ -164,17 +164,10 @@ export default function DynamicBackground() {
         </div>
       </div>
 
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
+      {/* vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(3,18,12,0.8)_85%)]" />
 
-      {/* noise overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.12] mix-blend-soft-light"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
-          backgroundSize: "160px 160px",
-        }}
-      />
+      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
     </div>
   );
 }
