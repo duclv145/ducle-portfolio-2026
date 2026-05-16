@@ -32,9 +32,6 @@ export default function Nav() {
             <li key={l.href}>
               <a
                 href={l.href}
-data-cursor="hover"
-                data-magnet
-                data-magnet-strength="0.3"
                 className="block rounded-full px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-fg-muted transition-colors hover:text-fg"
               >
                 {l.label}
