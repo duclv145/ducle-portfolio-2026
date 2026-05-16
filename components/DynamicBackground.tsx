@@ -153,7 +153,7 @@ export default function DynamicBackground() {
     <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
 
       {/* vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(3,18,12,0.8)_85%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(6,32,22,0.45)_90%)]" />
 
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
     </div>
