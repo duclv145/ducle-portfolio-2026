@@ -96,7 +96,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.7, duration: 0.9, ease }}
-          className="flex flex-col justify-center gap-8 md:col-span-4 md:col-start-9"
+          className="flex flex-col justify-center gap-8 md:col-span-4 md:col-start-8"
         >
           {/* Name badge + avatar */}
           <div className="flex items-center gap-4">
