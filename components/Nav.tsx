@@ -17,13 +17,13 @@ export default function Nav() {
       transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="fixed left-0 right-0 top-0 z-40 px-6 py-5 sm:px-10"
     >
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between">
+      <div className="relative mx-auto flex max-w-[1600px] items-center justify-center">
         <a
           href="#top"
           data-cursor="hover"
           data-magnet
           data-magnet-strength="0.45"
-          className="font-display text-2xl leading-none tracking-tight text-fg"
+          className="absolute left-0 font-display text-2xl leading-none tracking-tight text-fg"
         >
           duc<span className="text-accent">.</span>le
         </a>
