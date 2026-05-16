@@ -27,7 +27,7 @@ export const projects: Project[] = [
       "/golden-lake-palace/8.png",
     ],
     description:
-      "A complete identity system for a luxury lakeside resort — combining ornate gold motifs with a serene editorial typography.",
+      "A full brand identity for a premium Chinese restaurant — blending classical Eastern ornaments with refined gold typography to evoke elegance and culinary heritage.",
     accent: "#e0c267",
   },
   {
