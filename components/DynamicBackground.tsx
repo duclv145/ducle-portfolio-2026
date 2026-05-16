@@ -164,9 +164,6 @@ export default function DynamicBackground() {
         </div>
       </div>
 
-      {/* vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(3,18,12,0.8)_85%)]" />
-
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
     </div>
   );
