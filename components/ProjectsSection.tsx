@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projects } from "@/lib/data";
+import { projects, type Project } from "@/lib/data";
+import ProjectModal from "@/components/ProjectModal";
 
 const useIsoLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -12,6 +13,7 @@ const useIsoLayoutEffect =
 export default function ProjectsSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
+  const [active, setActive] = useState<Project | null>(null);
 
   // GSAP horizontal scroll
   useIsoLayoutEffect(() => {
@@ -97,9 +99,18 @@ export default function ProjectsSection() {
             </div>
 
             <div
+              onClick={() => setActive(p)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActive(p);
+                }
+              }}
               data-cursor="view"
               data-cursor-label="Open"
-              className="group relative mt-4 aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/10 bg-bg-soft"
+              className="group relative mt-4 aspect-[4/5] w-full cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-bg-soft"
             >
               <div className="absolute inset-0">
                 <Image
@@ -175,6 +186,8 @@ export default function ProjectsSection() {
           <span className="font-display italic text-fg">vol.04</span>
         </div>
       </div>
+
+      <ProjectModal project={active} onClose={() => setActive(null)} />
     </section>
   );
 }
