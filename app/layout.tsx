@@ -46,7 +46,7 @@ export default function RootLayout({
       lang="en"
       className={`${sans.variable} ${display.variable} ${mono.variable}`}
     >
-      <body className="bg-bg text-fg grain antialiased">
+      <body className="bg-bg text-fg grain antialiased" suppressHydrationWarning>
         <DynamicBackground />
 <CustomCursor />
         {children}
