@@ -145,10 +145,6 @@ export default function ProjectsSection() {
                 </span>
               </div>
             </div>
-
-            <p className="mt-5 max-w-md text-balance text-sm leading-relaxed text-fg/80">
-              {p.description}
-            </p>
           </article>
         ))}
 
