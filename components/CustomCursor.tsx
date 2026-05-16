@@ -153,7 +153,7 @@ export default function CustomCursor() {
   return (
     <div
       aria-hidden
-      className="cursor-host pointer-events-none fixed inset-0 z-[100]"
+      className="cursor-host pointer-events-none fixed inset-0 z-[200]"
     >
       {/* small dot */}
       <motion.div
