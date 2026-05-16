@@ -39,17 +39,6 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-        <a
-          href="#contact"
-          data-cursor="hover"
-          data-cursor-label="Say hi"
-          data-magnet
-          data-magnet-strength="0.5"
-          className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-bg transition-colors hover:bg-fg"
-        >
-          Let&rsquo;s talk
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-bg transition-transform group-hover:translate-x-0.5" />
-        </a>
       </div>
     </motion.nav>
   );
