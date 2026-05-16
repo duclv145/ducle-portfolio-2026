@@ -9,6 +9,10 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "instant" });
+}
+
 export default function Nav() {
   return (
     <motion.nav
@@ -20,6 +24,7 @@ export default function Nav() {
       <div className="mx-auto flex max-w-[1600px] items-center justify-between">
         <a
           href="#top"
+          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "instant" }); }}
           data-cursor="hover"
           data-magnet
           data-magnet-strength="0.45"
@@ -32,6 +37,7 @@ export default function Nav() {
             <li key={l.href}>
               <a
                 href={l.href}
+                onClick={(e) => { e.preventDefault(); scrollTo(l.href.slice(1)); }}
                 data-cursor="hover"
                 data-magnet
                 data-magnet-strength="0.3"
@@ -44,6 +50,7 @@ export default function Nav() {
         </ul>
         <a
           href="#contact"
+          onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
           data-cursor="hover"
           data-cursor-label="Say hi"
           data-magnet
