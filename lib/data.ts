@@ -128,10 +128,10 @@ export const profile = {
   email: "duclv145@gmail.com",
   available: "Available for select projects",
   bio: "As a Senior Graphic Designer with over 10 years of experience at leading corporations like Phu My Hung, Yeah1, and FPT, I have built my career on the foundation of solid design thinking. I am committed to evolving with the industry, skillfully integrating AI tools to enhance creativity and efficiency.",
+  phone: "0961 893 268",
   socials: [
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "Behance", href: "https://behance.net" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
+    { label: "Facebook", href: "https://facebook.com/duclee145" },
+    { label: "LinkedIn", href: "https://linkedin.com/in/duclv145" },
     { label: "Email", href: "mailto:duclv145@gmail.com" },
   ],
 };

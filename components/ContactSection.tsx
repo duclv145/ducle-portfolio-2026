@@ -46,19 +46,33 @@ export default function ContactSection() {
         </div>
 
         <div className="col-span-12 grid grid-cols-1 gap-10 md:grid-cols-3">
-          <div className="md:col-span-1">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted">
-              · Email
-            </p>
-            <a
-              href={`mailto:${profile.email}`}
-              data-cursor="hover"
-              data-magnet
-              data-magnet-strength="0.4"
-              className="mt-3 block font-display text-3xl text-fg underline-offset-4 hover:underline sm:text-4xl"
-            >
-              {profile.email}
-            </a>
+          <div className="md:col-span-1 flex flex-col gap-6">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted">
+                · Email
+              </p>
+              <a
+                href={`mailto:${profile.email}`}
+                data-cursor="hover"
+                data-magnet
+                data-magnet-strength="0.4"
+                className="mt-3 block font-display text-3xl text-fg underline-offset-4 hover:underline sm:text-4xl"
+              >
+                {profile.email}
+              </a>
+            </div>
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted">
+                · Phone
+              </p>
+              <a
+                href={`tel:${profile.phone}`}
+                data-cursor="hover"
+                className="mt-3 block font-display text-3xl text-fg underline-offset-4 hover:underline sm:text-4xl"
+              >
+                {profile.phone}
+              </a>
+            </div>
           </div>
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted">
