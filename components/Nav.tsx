@@ -17,13 +17,13 @@ export default function Nav() {
       transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="fixed left-0 right-0 top-0 z-40 px-6 py-5 sm:px-10"
     >
-      <div className="relative mx-auto flex max-w-[1600px] items-center justify-center">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between">
         <a
           href="#top"
           data-cursor="hover"
           data-magnet
           data-magnet-strength="0.45"
-          className="absolute left-0 font-display text-2xl leading-none tracking-tight text-fg"
+          className="font-display text-2xl leading-none tracking-tight text-fg"
         >
           duc<span className="text-accent">.</span>le
         </a>
@@ -39,6 +39,17 @@ export default function Nav() {
             </li>
           ))}
         </ul>
+        <a
+          href="#contact"
+          data-cursor="hover"
+          data-cursor-label="Say hi"
+          data-magnet
+          data-magnet-strength="0.5"
+          className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-bg transition-colors hover:bg-fg"
+        >
+          Let&rsquo;s talk
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-bg transition-transform group-hover:translate-x-0.5" />
+        </a>
       </div>
     </motion.nav>
   );
