@@ -63,7 +63,7 @@ export default function SkillsSection() {
   return (
     <section id="skills" className="relative z-10 w-full px-6 py-32 sm:px-10 sm:py-40">
       <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-x-4 gap-y-16">
-        <div className="col-span-12 flex items-end justify-between gap-6 border-b border-fg/10 pb-8">
+        <div className="col-span-12 flex items-end justify-between gap-6 border-b border-white/10 pb-8">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">· 03 · Skills</p>
             <h2 className="mt-4 font-display text-5xl leading-[0.95] text-fg sm:text-6xl md:text-7xl">
@@ -75,7 +75,7 @@ export default function SkillsSection() {
           </p>
         </div>
 
-        <ul className="col-span-12 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-fg/10 bg-fg/5 sm:grid-cols-3 lg:grid-cols-4">
+        <ul className="col-span-12 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/5 sm:grid-cols-3 lg:grid-cols-4">
           {skills.map((s, i) => {
             const Icon = Icons[s.name];
             return (
@@ -88,12 +88,12 @@ export default function SkillsSection() {
                 data-cursor="hover"
                 className="group relative flex flex-col justify-between gap-10 bg-bg/70 p-6 transition-colors duration-300 hover:bg-accent sm:p-8"
               >
-                <div className="text-fg/40 transition-colors duration-300 group-hover:text-on-accent">
+                <div className="text-fg/40 transition-colors duration-300 group-hover:text-bg">
                   {Icon ? <Icon /> : null}
                 </div>
                 <div>
-                  <p className="font-display text-2xl leading-tight text-fg transition-colors duration-300 group-hover:text-on-accent sm:text-3xl">{s.name}</p>
-                  <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-fg-muted transition-colors duration-300 group-hover:text-on-accent/60">· {s.level}</p>
+                  <p className="font-display text-2xl leading-tight text-fg transition-colors duration-300 group-hover:text-bg sm:text-3xl">{s.name}</p>
+                  <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-fg-muted transition-colors duration-300 group-hover:text-bg/60">· {s.level}</p>
                 </div>
               </motion.li>
             );

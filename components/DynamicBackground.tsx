@@ -98,7 +98,7 @@ export default function DynamicBackground() {
         }
 
         ctx.beginPath();
-        ctx.fillStyle = "rgba(10,10,15,0.30)";
+        ctx.fillStyle = "rgba(245,245,247,0.5)";
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
       }
@@ -112,7 +112,7 @@ export default function DynamicBackground() {
           const dy = a.y - b.y;
           const d2 = dx * dx + dy * dy;
           if (d2 < LINK_DIST * LINK_DIST) {
-            ctx.strokeStyle = `rgba(10,10,15,${(1 - Math.sqrt(d2) / LINK_DIST) * 0.12})`;
+            ctx.strokeStyle = `rgba(245,245,247,${(1 - Math.sqrt(d2) / LINK_DIST) * 0.15})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -165,7 +165,7 @@ export default function DynamicBackground() {
       </div>
 
       {/* vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(255,255,255,0.6)_85%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(10,10,15,0.85)_85%)]" />
 
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
     </div>

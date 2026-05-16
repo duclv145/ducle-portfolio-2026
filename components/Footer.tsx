@@ -23,7 +23,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="relative z-10 border-t border-fg/10 px-6 py-8 sm:px-10">
+    <footer className="relative z-10 border-t border-white/10 px-6 py-8 sm:px-10">
       <div className="mx-auto flex max-w-[1600px] flex-col items-start justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.18em] text-fg-muted sm:flex-row sm:items-center">
         <p>
           © 2026 Duc Le · Designed &amp; built in Hanoi
