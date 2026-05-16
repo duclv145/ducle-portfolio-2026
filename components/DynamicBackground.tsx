@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 type Particle = { x: number; y: number; vx: number; vy: number; r: number };
 
@@ -15,28 +14,6 @@ export default function DynamicBackground() {
   const mouseRef = useRef<{ x: number; y: number; active: boolean }>({ x: -9999, y: -9999, active: false });
   const particlesRef = useRef<Particle[]>([]);
   const lastFrameRef = useRef<number>(0);
-
-  // Cursor-tracking blobs (normalized -0.5..0.5 of viewport)
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const sx = useSpring(mx, { damping: 40, stiffness: 90, mass: 0.8 });
-  const sy = useSpring(my, { damping: 40, stiffness: 90, mass: 0.8 });
-
-  const blob1X = useTransform(sx, (v) => v * 120);
-  const blob1Y = useTransform(sy, (v) => v * 120);
-  const blob2X = useTransform(sx, (v) => v * -90);
-  const blob2Y = useTransform(sy, (v) => v * -90);
-  const blob3X = useTransform(sx, (v) => v * 60);
-  const blob3Y = useTransform(sy, (v) => v * 60);
-
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      mx.set(e.clientX / window.innerWidth - 0.5);
-      my.set(e.clientY / window.innerHeight - 0.5);
-    };
-    window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [mx, my]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -174,30 +151,9 @@ export default function DynamicBackground() {
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      {/* Cursor-tracking mesh blobs */}
-      <div className="absolute inset-0">
-        <div className="absolute left-[20%] top-[15%] h-[50vmax] w-[50vmax] -translate-x-1/2 -translate-y-1/2">
-          <motion.div
-            style={{ x: blob1X, y: blob1Y }}
-            className="h-full w-full rounded-full bg-[radial-gradient(circle_at_center,rgba(255,94,161,0.5),transparent_60%)] blur-[100px] opacity-40"
-          />
-        </div>
-        <div className="absolute left-[75%] top-[65%] h-[45vmax] w-[45vmax] -translate-x-1/2 -translate-y-1/2">
-          <motion.div
-            style={{ x: blob2X, y: blob2Y }}
-            className="h-full w-full rounded-full bg-[radial-gradient(circle_at_center,rgba(102,226,255,0.5),transparent_60%)] blur-[100px] opacity-35"
-          />
-        </div>
-        <div className="absolute left-[55%] top-[30%] h-[40vmax] w-[40vmax] -translate-x-1/2 -translate-y-1/2">
-          <motion.div
-            style={{ x: blob3X, y: blob3Y }}
-            className="h-full w-full rounded-full bg-[radial-gradient(circle_at_center,rgba(224,254,16,0.4),transparent_60%)] blur-[110px] opacity-25"
-          />
-        </div>
-      </div>
 
       {/* vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(10,10,15,0.85)_85%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(3,18,12,0.8)_85%)]" />
 
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
     </div>
