@@ -10,38 +10,37 @@ const links = [
 ];
 
 export default function Nav() {
-  const headerRef = useRef<HTMLElement>(null);
-  const lastScrollY = useRef(0);
-  const rafId = useRef<number | null>(null);
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const lastY = useRef(0);
+  const rafId = useRef<number | null>(null);
+  const isHidden = useRef(false);
 
   useEffect(() => {
     const header = headerRef.current;
     if (!header) return;
 
-    const update = () => {
-      const current = window.scrollY;
-      const scrolled = current > 24;
-      const hidden = current > lastScrollY.current && current > 80;
-
-      header.style.background = scrolled
-        ? "rgba(0, 28, 190, 0.82)"
-        : "transparent";
-      header.style.backdropFilter = scrolled
-        ? "blur(20px) saturate(160%)"
-        : "none";
-      header.style.borderBottomColor = scrolled
-        ? "rgba(255,255,255,0.12)"
-        : "transparent";
-      header.style.transform = hidden ? "translateY(-100%)" : "translateY(0)";
-
-      lastScrollY.current = current;
-      rafId.current = null;
-    };
-
     const onScroll = () => {
       if (rafId.current !== null) return;
-      rafId.current = requestAnimationFrame(update);
+      rafId.current = requestAnimationFrame(() => {
+        const current = window.scrollY;
+        const goingDown = current > lastY.current + 8 && current > 80;
+        const goingUp   = current < lastY.current - 4;
+
+        if (goingDown && !isHidden.current) {
+          isHidden.current = true;
+          header.style.transform = "translateY(-100%)";
+          lastY.current = current;
+        } else if (goingUp && isHidden.current) {
+          isHidden.current = false;
+          header.style.transform = "translateY(0)";
+          lastY.current = current;
+        } else if (!goingDown && !goingUp) {
+          lastY.current = current;
+        }
+
+        rafId.current = null;
+      });
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -57,13 +56,11 @@ export default function Nav() {
       className="fixed top-0 left-0 right-0 z-50"
       style={{
         height: 56,
-        background: "transparent",
-        backdropFilter: "none",
-        borderBottom: "1px solid transparent",
+        background: "rgba(0, 28, 190, 0.82)",
+        backdropFilter: "blur(20px) saturate(160%)",
+        borderBottom: "1px solid rgba(255,255,255,0.12)",
         transform: "translateY(0)",
-        transition:
-          "background 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease, transform 0.3s ease",
-        willChange: "transform",
+        transition: "transform 0.3s ease",
       }}
     >
       <div className="mx-auto max-w-[1200px] h-full flex items-center justify-between px-5 lg:px-8">

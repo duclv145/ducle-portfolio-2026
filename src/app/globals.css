@@ -279,6 +279,12 @@ a.link {
 }
 .marquee-track { animation: marquee 38s linear infinite; }
 
+@keyframes ping-ripple {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+.dot-ping-ripple { animation: ping-ripple 1.4s ease-out infinite; }
+
 @keyframes reveal-up {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }

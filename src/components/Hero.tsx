@@ -141,13 +141,16 @@ export default function Hero() {
               padding: "10px 16px",
             }}
           >
-            <span
-              className="inline-block h-2 w-2 rounded-full"
-              style={{
-                background: "#4ade80",
-                boxShadow: "0 0 0 4px rgba(74,222,128,0.25)",
-              }}
-            />
+            <span className="relative inline-flex items-center justify-center h-2 w-2">
+              <span
+                className="dot-ping-ripple absolute inline-block h-2 w-2 rounded-full"
+                style={{ background: "#4ade80" }}
+              />
+              <span
+                className="relative inline-block h-2 w-2 rounded-full"
+                style={{ background: "#4ade80" }}
+              />
+            </span>
             <span
               className="body-sm"
               style={{
