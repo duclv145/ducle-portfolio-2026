@@ -6,7 +6,6 @@ import { ArrowUpRight } from "lucide-react";
 const links = [
   { label: "Phone", value: "0961 893 268", href: "tel:+84961893268" },
   { label: "Email", value: "duclv145@gmail.com", href: "mailto:duclv145@gmail.com" },
-  { label: "LinkedIn", value: "linkedin.com/in/duclv145", href: "https://linkedin.com/in/duclv145" },
   { label: "Facebook", value: "facebook.com/duclee145", href: "https://facebook.com/duclee145" },
 ];
 
@@ -31,7 +30,6 @@ const footerCols = [
   {
     title: "Connect",
     items: [
-      { label: "LinkedIn", href: "https://linkedin.com/in/duclv145" },
       { label: "Facebook", href: "https://facebook.com/duclee145" },
       { label: "Behance", href: "#" },
       { label: "Email", href: "mailto:duclv145@gmail.com" },
@@ -45,16 +43,8 @@ export default function Contact() {
       {/* CTA band — full Framer poster headline */}
       <section
         id="contact"
-        className="bg-canvas relative overflow-hidden border-t border-[var(--hairline-soft)] py-28 lg:py-36"
+        className="relative overflow-hidden border-t border-[var(--hairline-soft)] py-28 lg:py-36"
       >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(40% 60% at 80% 60%, rgba(255,122,61,0.15), transparent 60%), radial-gradient(35% 50% at 10% 40%, rgba(106,76,245,0.16), transparent 60%)",
-          }}
-        />
 
         <div className="relative mx-auto max-w-[1200px] px-5 lg:px-8">
           <FadeIn>
@@ -72,7 +62,7 @@ export default function Contact() {
           </FadeIn>
 
           {/* Direct links row */}
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-4 border-t border-[var(--hairline-soft)]">
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 border-t border-[var(--hairline-soft)]">
             {links.map((link, i) => (
               <FadeIn key={link.label} delay={0.2 + i * 0.05}>
                 <a
@@ -98,7 +88,7 @@ export default function Contact() {
       </section>
 
       {/* Footer — dense link grid in Framer's caption type */}
-      <footer className="bg-canvas border-t border-[var(--hairline-soft)] py-16 lg:py-20">
+      <footer className="border-t border-[var(--hairline-soft)] py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-5 lg:px-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="caption text-ink-muted">

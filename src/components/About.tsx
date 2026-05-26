@@ -89,7 +89,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="bg-canvas py-24 lg:py-32 border-t border-[var(--hairline-soft)]"
+      className="py-24 lg:py-32 border-t border-[var(--hairline-soft)]"
     >
       <div className="mx-auto max-w-[1200px] px-5 lg:px-8">
         {/* Header */}
@@ -101,7 +101,7 @@ export default function About() {
 
         <div className="mt-5 grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
           {/* Left column */}
-          <FadeIn className="lg:sticky lg:top-28 lg:self-start" delay={0.05}>
+          <FadeIn className="lg:sticky lg:top-8 lg:self-start" delay={0.05}>
             <h2 className="display-xl text-ink">
               Senior Graphic
               <br />
@@ -118,7 +118,7 @@ export default function About() {
                 alt="Duc Le"
                 fill
                 sizes="380px"
-                className="object-cover"
+                className="object-cover object-top"
                 priority={false}
               />
             </div>

@@ -5,101 +5,187 @@ import Image from "next/image";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const DASHIVE_BLUE = "#0022E5";
+
+const lines = [
+  { text: "Hello,", delay: 0.15, style: "tenor" },
+  { text: "my name's Duc Le.", delay: 0.28, style: "serif" },
+  { text: "I'm a Graphic Designer.", delay: 0.42, style: "italic" },
+];
+
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate overflow-hidden bg-canvas"
+      className="relative isolate overflow-hidden"
       style={{ minHeight: "100vh" }}
     >
-      {/* Atmospheric backdrop glows — subtle, never section grounds */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-70"
-        style={{
-          background:
-            "radial-gradient(60% 50% at 80% 0%, rgba(106,76,245,0.22), transparent 60%), radial-gradient(50% 40% at 0% 30%, rgba(255,122,61,0.10), transparent 65%)",
-        }}
-      />
 
-      <div className="relative mx-auto max-w-[1200px] px-5 lg:px-8 pt-36 pb-24 lg:pt-44 lg:pb-32">
+      {/* ── Content ──────────────────────────────────────────────────── */}
+      <div
+        className="relative mx-auto max-w-[1200px] px-5 lg:px-8 pt-36 pb-24 lg:pt-44 lg:pb-32"
+        style={{ zIndex: 10 }}
+      >
         {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease, delay: 0.1 }}
-          className="caption text-ink-muted uppercase"
-          style={{ letterSpacing: "0.18em" }}
+          transition={{ duration: 0.7, ease, delay: 0.05 }}
+          className="caption uppercase"
+          style={{ letterSpacing: "0.18em", color: "rgba(255,255,255,0.55)" }}
         >
           Duc Le — Portfolio · 2026
         </motion.p>
 
-        {/* Poster headline — display-xxl at -5.5px tracking */}
-        <motion.h1
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease, delay: 0.2 }}
-          className="display-xxl text-ink mt-6"
-        >
-          Graphic Designer
-          <br />
-          &amp; Generative
-          <br />
-          AI Designer.
-        </motion.h1>
+        {/* Headline */}
+        <h1 className="mt-6">
+          {lines.map(({ text, delay, style }, i) => (
+            <motion.span
+              key={i}
+              className="block"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease, delay }}
+            >
+              {style === "tenor" && (
+                <span style={{
+                  fontFamily: '"Google Sans", "Google Sans Display", ui-sans-serif, sans-serif',
+                  fontWeight: 400,
+                  fontSize: "clamp(48px, 9vw, 96px)",
+                  lineHeight: 1.0,
+                  letterSpacing: "0.06em",
+                  background: "linear-gradient(90deg, #fff 0%, #a8c0ff 30%, #e0c8ff 50%, #a8c0ff 70%, #fff 100%)",
+                  backgroundSize: "300% auto",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  animation: "shimmer 6s linear infinite",
+                }}>
+                  {text}
+                </span>
+              )}
+              {style === "serif" && (
+                <span style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 700,
+                  fontSize: "clamp(48px, 9vw, 96px)",
+                  lineHeight: 1.0,
+                  letterSpacing: "-0.02em",
+                  color: "#fff",
+                }}>
+                  {text}
+                </span>
+              )}
+              {style === "italic" && (
+                <span style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 300,
+                  fontStyle: "italic",
+                  fontSize: "clamp(42px, 8vw, 84px)",
+                  lineHeight: 1.1,
+                  letterSpacing: "0em",
+                  color: "rgba(255,255,255,0.65)",
+                }}>
+                  {text}
+                </span>
+              )}
+            </motion.span>
+          ))}
+        </h1>
 
-        {/* Subhead row */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease, delay: 0.45 }}
-          className="mt-10 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end"
+          transition={{ duration: 0.8, ease, delay: 0.6 }}
+          className="mt-10 flex flex-wrap items-center gap-3"
         >
-          <p className="body-lg text-ink-muted max-w-xl">
-            I&apos;m a hands-on graphic designer with 10+ years shaping brand
-            identity, motion, and generative-AI visuals — translating ideas into
-            systems that ship.
-          </p>
-
-          <div className="flex flex-wrap items-center gap-3 lg:justify-end">
-            <a href="#work" className="btn-primary focus-ring">
-              See selected work →
-            </a>
-          </div>
+          <a
+            href="#work"
+            className="focus-ring"
+            style={{
+              background: "#fff",
+              color: DASHIVE_BLUE,
+              fontFamily: '"Google Sans", ui-sans-serif, sans-serif',
+              fontSize: 12,
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              padding: "12px 20px",
+              borderRadius: 100,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              textDecoration: "none",
+              transition: "opacity 0.18s ease",
+            }}
+          >
+            See selected work →
+          </a>
         </motion.div>
 
-        {/* Live availability + portrait */}
+        {/* Availability + avatar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease, delay: 0.75 }}
+          transition={{ duration: 0.8, ease, delay: 0.85 }}
           className="mt-16 flex flex-wrap items-center gap-6"
         >
-          <div className="flex items-center gap-3 btn-secondary" style={{ background: "var(--surface-1)" }}>
+          <div
+            className="flex items-center gap-3"
+            style={{
+              background: "rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              backdropFilter: "blur(8px)",
+              borderRadius: 100,
+              padding: "10px 16px",
+            }}
+          >
             <span
               className="inline-block h-2 w-2 rounded-full"
               style={{
-                background: "var(--success)",
-                boxShadow: "0 0 0 4px rgba(34,197,94,0.18)",
+                background: "#4ade80",
+                boxShadow: "0 0 0 4px rgba(74,222,128,0.25)",
               }}
             />
-            <span className="body-sm">Available for a new job</span>
+            <span
+              className="body-sm"
+              style={{
+                textTransform: "none",
+                letterSpacing: "0.01em",
+                color: "#fff",
+              }}
+            >
+              Available for a new job
+            </span>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="relative h-10 w-10 rounded-full overflow-hidden border border-[var(--hairline)]">
+            <div
+              className="relative h-10 w-10 rounded-full overflow-hidden"
+              style={{ border: "2px solid rgba(255,255,255,0.3)" }}
+            >
               <Image
                 src="/avatar.png"
                 alt="Duc Le portrait"
                 fill
                 sizes="40px"
-                className="object-cover"
+                className="object-cover object-top"
               />
             </div>
             <div>
-              <p className="body-sm text-ink">Duc Le</p>
-              <p className="micro text-ink-muted">
-                <a href="mailto:duclv145@gmail.com" className="text-ink hover:text-[var(--accent-blue)] transition-colors">duclv145@gmail.com</a>
+              <p className="body-sm" style={{ color: "#fff" }}>Duc Le</p>
+              <p className="micro">
+                <a
+                  href="mailto:duclv145@gmail.com"
+                  style={{
+                    color: "rgba(255,255,255,0.55)",
+                    textDecoration: "none",
+                    transition: "color 0.15s",
+                  }}
+                >
+                  duclv145@gmail.com
+                </a>
               </p>
             </div>
           </div>

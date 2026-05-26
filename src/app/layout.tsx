@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Mona_Sans, JetBrains_Mono } from "next/font/google";
+import { Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import ScrollProgress from "@/components/ScrollProgress";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin", "vietnamese"],
-});
-
-// Mona Sans = the open-source stand-in for GT Walsheim Medium per DESIGN.md
-const display = Mona_Sans({
+const cormorant = Cormorant_Garamond({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+const cormorantSerif = Cormorant_Garamond({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const mono = JetBrains_Mono({
@@ -28,57 +29,36 @@ const description =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: title,
-    template: "%s · Duc Le",
-  },
+  title: { default: title, template: "%s · Duc Le" },
   description,
-  keywords: [
-    "Duc Le",
-    "Graphic Designer",
-    "Motion Graphic",
-    "Generative AI Designer",
-    "Brand Design",
-    "Portfolio",
-    "Hanoi designer",
-  ],
+  keywords: ["Duc Le", "Graphic Designer", "Motion Graphic", "Generative AI Designer", "Brand Design", "Portfolio", "Hanoi designer"],
   authors: [{ name: "Duc Le", url: siteUrl }],
   creator: "Duc Le",
   alternates: { canonical: "/" },
   openGraph: {
-    type: "website",
-    url: siteUrl,
-    title,
-    description,
-    siteName: "Duc Le — Portfolio",
-    locale: "en_US",
+    type: "website", url: siteUrl, title, description,
+    siteName: "Duc Le — Portfolio", locale: "en_US",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Duc Le — Portfolio" }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/logo.png"],
-    creator: "@duclv145",
-  },
-  icons: {
-    icon: "/logo.svg",
-    shortcut: "/logo.svg",
-    apple: "/logo.svg",
-  },
+  twitter: { card: "summary_large_image", title, description, images: ["/logo.png"], creator: "@duclv145" },
+  icons: { icon: "/logo.svg", shortcut: "/logo.svg", apple: "/logo.svg" },
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${display.variable} ${mono.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${cormorantSerif.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-canvas text-ink cursor-auto">
-        <ScrollProgress />
+      <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-canvas text-ink cursor-auto" suppressHydrationWarning>
         {children}
       </body>
     </html>

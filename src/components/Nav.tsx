@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const links = [
   { href: "#about", label: "About" },
@@ -10,37 +10,63 @@ const links = [
 ];
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const lastScrollY = useRef(0);
+  const rafId = useRef<number | null>(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = 0;
-    const onScroll = () => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const update = () => {
       const current = window.scrollY;
-      setScrolled(current > 24);
-      setHidden(current > lastScrollY && current > 80);
-      lastScrollY = current;
+      const scrolled = current > 24;
+      const hidden = current > lastScrollY.current && current > 80;
+
+      header.style.background = scrolled
+        ? "rgba(0, 28, 190, 0.82)"
+        : "transparent";
+      header.style.backdropFilter = scrolled
+        ? "blur(20px) saturate(160%)"
+        : "none";
+      header.style.borderBottomColor = scrolled
+        ? "rgba(255,255,255,0.12)"
+        : "transparent";
+      header.style.transform = hidden ? "translateY(-100%)" : "translateY(0)";
+
+      lastScrollY.current = current;
+      rafId.current = null;
     };
+
+    const onScroll = () => {
+      if (rafId.current !== null) return;
+      rafId.current = requestAnimationFrame(update);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId.current !== null) cancelAnimationFrame(rafId.current);
+    };
   }, []);
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      ref={headerRef}
+      className="fixed top-0 left-0 right-0 z-50"
       style={{
         height: 56,
-        transform: hidden ? "translateY(-100%)" : "translateY(0)",
-        background: scrolled ? "rgba(9,9,9,0.78)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px) saturate(140%)" : "none",
-        borderBottom: scrolled
-          ? "1px solid var(--hairline-soft)"
-          : "1px solid transparent",
+        background: "transparent",
+        backdropFilter: "none",
+        borderBottom: "1px solid transparent",
+        transform: "translateY(0)",
+        transition:
+          "background 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease, transform 0.3s ease",
+        willChange: "transform",
       }}
     >
       <div className="mx-auto max-w-[1200px] h-full flex items-center justify-between px-5 lg:px-8">
-        {/* Wordmark */}
         <a
           href="/"
           aria-label="Duc Le — Home"
@@ -50,7 +76,6 @@ export default function Nav() {
           ducle<span style={{ color: "var(--accent-blue)" }}>.</span>
         </a>
 
-        {/* Centered links (desktop) */}
         <nav className="hidden lg:flex items-center gap-7 absolute left-1/2 -translate-x-1/2">
           {links.map((l) => (
             <Link
@@ -63,7 +88,6 @@ export default function Nav() {
           ))}
         </nav>
 
-        {/* Mobile: hamburger */}
         <div className="flex items-center lg:hidden">
           <button
             type="button"
@@ -85,7 +109,6 @@ export default function Nav() {
         </div>
       </div>
 
-      {/* Mobile overlay */}
       {open && (
         <div
           className="lg:hidden absolute top-full left-0 right-0 bg-canvas border-b border-[var(--hairline-soft)]"

@@ -1,25 +1,22 @@
 @import "tailwindcss";
 
-/*
- * Framer-inspired dark canvas system (per DESIGN.md).
- * Two anchor surfaces (canvas + primary) + 1 chromatic accent + gradient atmosphere.
- */
+/* ── Dashive Blue dark theme ──────────────────────────────────────── */
 :root {
-  --canvas: #090909;
-  --surface-1: #141414;
-  --surface-2: #1c1c1c;
-  --hairline: #262626;
-  --hairline-soft: #1a1a1a;
-  --ink: #ffffff;
-  --ink-muted: #999999;
-  --on-primary: #000000;
-  --primary: #ffffff;
-  --accent-blue: #0099ff;
-  --grad-magenta: #d44df0;
-  --grad-violet: #6a4cf5;
-  --grad-orange: #ff7a3d;
-  --grad-coral: #ff5577;
-  --success: #22c55e;
+  --canvas:        #0022E5;
+  --surface-1:     rgba(255, 255, 255, 0.07);
+  --surface-2:     rgba(255, 255, 255, 0.13);
+  --hairline:      rgba(255, 255, 255, 0.16);
+  --hairline-soft: rgba(255, 255, 255, 0.09);
+  --ink:           #ffffff;
+  --ink-muted:     rgba(255, 255, 255, 0.55);
+  --on-primary:    #0022E5;
+  --primary:       #ffffff;
+  --accent-blue:   #7eb8ff;
+  --grad-magenta:  #d44df0;
+  --grad-violet:   #6a4cf5;
+  --grad-orange:   #ff7a3d;
+  --grad-coral:    #ff5577;
+  --success:       #4ade80;
 }
 
 @theme inline {
@@ -40,40 +37,41 @@
 
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
   --font-mono: var(--font-mono);
 
-  --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 15px;
-  --radius-xl: 20px;
-  --radius-xxl: 30px;
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   15px;
+  --radius-xl:   20px;
+  --radius-xxl:  30px;
   --radius-pill: 100px;
 }
 
+/* ── Base ─────────────────────────────────────────────────────────── */
 html {
   background: var(--canvas);
   color: var(--ink);
-  scroll-behavior: smooth;
   color-scheme: dark;
 }
 
 body {
-  background: var(--canvas);
+  background-color: var(--canvas);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+  background-attachment: fixed;
   color: var(--ink);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: "cv01", "cv05", "cv09", "cv11", "ss03", "ss07", "dlig";
+  font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  
-}
 
+/* ── Selection ───────────────────────────────────────────────────── */
 ::selection {
-  background: var(--accent-blue);
-  color: var(--ink);
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
 a {
@@ -84,121 +82,131 @@ a.link {
   color: var(--accent-blue);
 }
 
-/* --- Display type — Framer's poster cadence (negative tracking scales with size) --- */
+/* ── Display type — Cormorant Garamond serif ─────────────────────── */
 .display-xxl {
-  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-  font-weight: 500;
-  font-size: clamp(58px, 11vw, 110px);
-  line-height: 0.85;
-  letter-spacing: -0.05em;
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(48px, 9vw, 96px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
 }
 .display-xl {
-  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-  font-weight: 500;
-  font-size: clamp(46px, 8.5vw, 85px);
-  line-height: 0.95;
-  letter-spacing: -0.05em;
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(38px, 6.5vw, 68px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
 }
 .display-lg {
-  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-  font-weight: 500;
-  font-size: clamp(38px, 6.2vw, 62px);
-  line-height: 1;
-  letter-spacing: -0.05em;
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(28px, 4.5vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 .display-md {
-  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-display), ui-serif, Georgia, serif;
   font-weight: 500;
-  font-size: 32px;
-  line-height: 1.13;
-  letter-spacing: -0.03em;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
+/* ── UI / body — Google Sans ─────────────────────────────────────── */
 .headline {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 1.2;
-  letter-spacing: -0.036em;
+  font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 .subhead {
-  font-family: var(--font-sans);
+  font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 1.3;
-  letter-spacing: -0.0004em;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.75;
+  letter-spacing: 0.01em;
 }
 .body-lg {
-  font-family: var(--font-sans);
+  font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
+  font-size: 16px;
+  line-height: 1.75;
+  letter-spacing: 0.015em;
 }
 .body {
-  font-family: var(--font-sans);
+  font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
-  font-size: 15px;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
 }
 .body-sm {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
+  font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
 }
 .caption {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 .micro {
-  font-family: var(--font-sans);
+  font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
 }
 
-/* --- Buttons (pill is the brand vocabulary) --- */
+/* ── Buttons ─────────────────────────────────────────────────────── */
 .btn-primary {
   background: var(--primary);
   color: var(--on-primary);
-  font: 500 14px/1 var(--font-sans);
-  letter-spacing: -0.01em;
-  padding: 10px 15px;
+  font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 20px;
   border-radius: var(--radius-pill);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   transition: transform 0.18s ease, opacity 0.18s ease;
 }
-.btn-primary:active {
-  transform: scale(0.97);
-}
+.btn-primary:hover  { opacity: 0.88; }
+.btn-primary:active { transform: scale(0.97); }
+
 .btn-secondary {
   background: var(--surface-1);
   color: var(--ink);
-  font: 500 14px/1 var(--font-sans);
-  letter-spacing: -0.01em;
-  padding: 10px 15px;
+  font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 20px;
   border-radius: var(--radius-pill);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   transition: background 0.18s ease, transform 0.18s ease;
 }
-.btn-secondary:hover {
-  background: var(--surface-2);
-}
+.btn-secondary:hover { background: var(--surface-2); }
+
 .btn-translucent {
   background: var(--surface-2);
   color: var(--ink);
-  font: 500 14px/1 var(--font-sans);
+  font: 500 14px/1 "Google Sans", ui-sans-serif, sans-serif;
   letter-spacing: -0.01em;
   padding: 8px 14px;
   border-radius: var(--radius-xxl);
@@ -206,6 +214,7 @@ a.link {
   align-items: center;
   gap: 6px;
 }
+
 .btn-icon-circular {
   background: var(--surface-1);
   color: var(--ink);
@@ -217,67 +226,65 @@ a.link {
   justify-content: center;
 }
 
-/* --- Surface lift cards --- */
+/* ── Cards ───────────────────────────────────────────────────────── */
 .card-surface-1 {
-  background: var(--surface-1);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-xl);
   padding: 24px;
 }
 .card-surface-2 {
-  background: var(--surface-2);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-xl);
   padding: 24px;
 }
 
-/* --- Gradient spotlight atmosphere tiles (use scarcely — 1 or 2 per long page) --- */
+/* ── Spot tiles ──────────────────────────────────────────────────── */
 .spot-violet {
   background:
-    radial-gradient(120% 80% at 20% 0%, rgba(255, 255, 255, 0.18), transparent 55%),
+    radial-gradient(120% 80% at 20% 0%, rgba(255,255,255,0.18), transparent 55%),
     linear-gradient(135deg, var(--grad-violet) 0%, #2a1c8a 100%);
 }
 .spot-magenta {
   background:
-    radial-gradient(120% 80% at 20% 0%, rgba(255, 255, 255, 0.18), transparent 55%),
+    radial-gradient(120% 80% at 20% 0%, rgba(255,255,255,0.18), transparent 55%),
     linear-gradient(135deg, var(--grad-magenta) 0%, #6a1e7d 100%);
 }
 .spot-orange {
   background:
-    radial-gradient(120% 80% at 80% 0%, rgba(255, 255, 255, 0.18), transparent 55%),
+    radial-gradient(120% 80% at 80% 0%, rgba(255,255,255,0.18), transparent 55%),
     linear-gradient(135deg, var(--grad-orange) 0%, #b53a14 100%);
 }
 .spot-coral {
   background:
-    radial-gradient(120% 80% at 30% 100%, rgba(255, 255, 255, 0.18), transparent 55%),
+    radial-gradient(120% 80% at 30% 100%, rgba(255,255,255,0.18), transparent 55%),
     linear-gradient(135deg, var(--grad-coral) 0%, #8a1f3a 100%);
 }
 
-/* --- Hairline divider --- */
-.hairline {
-  background: var(--hairline);
-  height: 1px;
-}
-.hairline-soft {
-  background: var(--hairline-soft);
-  height: 1px;
-}
+/* ── Hairlines ───────────────────────────────────────────────────── */
+.hairline      { background: var(--hairline);      height: 1px; }
+.hairline-soft { background: var(--hairline-soft); height: 1px; }
 
-/* --- Focus ring — single chromatic signal --- */
+/* ── Focus ring ──────────────────────────────────────────────────── */
 .focus-ring:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 1px rgba(0, 153, 255, 0.55), 0 0 0 4px rgba(0, 153, 255, 0.18);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.5), 0 0 0 4px rgba(255,255,255,0.15);
 }
 
-/* --- Marquee --- */
+/* ── Keyframes ───────────────────────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-.marquee-track {
-  animation: marquee 38s linear infinite;
-}
+.marquee-track { animation: marquee 38s linear infinite; }
 
-/* --- Reveal --- */
 @keyframes reveal-up {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
 }
