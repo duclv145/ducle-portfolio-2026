@@ -13,7 +13,7 @@ export default function Projects() {
 
   return (
     <>
-      <section id="work" className="py-24 lg:py-32 border-t border-[var(--hairline-soft)]">
+      <section id="work" className="py-24 lg:py-32 border-t border-[var(--hairline-soft)]" style={{ background: "var(--canvas)" }}>
         <div className="mx-auto max-w-[1200px] px-5 lg:px-8">
           {/* Header */}
           <div className="flex items-end justify-between gap-6 flex-wrap">

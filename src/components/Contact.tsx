@@ -88,7 +88,7 @@ export default function Contact() {
       </section>
 
       {/* Footer — dense link grid in Framer's caption type */}
-      <footer className="border-t border-[var(--hairline-soft)] py-16 lg:py-20">
+      <footer className="border-t border-[var(--hairline-soft)] py-16 lg:py-20" style={{ background: "var(--canvas)" }}>
         <div className="mx-auto max-w-[1200px] px-5 lg:px-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="caption text-ink-muted">
