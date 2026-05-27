@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import LenisProvider from "@/components/LenisProvider";
+import ScrollProgress from "@/components/ScrollProgress";
+import CursorGlow from "@/components/CursorGlow";
+import Grain from "@/components/Grain";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-display",
@@ -58,8 +62,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-canvas text-ink cursor-auto" suppressHydrationWarning>
-        {children}
+      <body className="min-h-full flex flex-col bg-canvas text-ink" suppressHydrationWarning>
+        <LenisProvider>
+          <ScrollProgress />
+          <Grain opacity={0.09} />
+          <CursorGlow />
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );
