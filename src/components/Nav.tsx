@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const links = [
-  { href: "#about", label: "About" },
+const navLinks = [
   { href: "#work", label: "Work" },
+  { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -25,7 +25,7 @@ export default function Nav() {
       rafId.current = requestAnimationFrame(() => {
         const current = window.scrollY;
         const goingDown = current > lastY.current + 8 && current > 80;
-        const goingUp   = current < lastY.current - 4;
+        const goingUp = current < lastY.current - 4;
 
         if (goingDown && !isHidden.current) {
           isHidden.current = true;
@@ -51,80 +51,242 @@ export default function Nav() {
   }, []);
 
   return (
-    <header
-      ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-50"
-      style={{
-        height: 56,
-        background: "rgba(0, 28, 190, 0.82)",
-        backdropFilter: "blur(20px) saturate(160%)",
-        borderBottom: "1px solid rgba(255,255,255,0.12)",
-        transform: "translateY(0)",
-        transition: "transform 0.3s ease",
-      }}
-    >
-      <div className="mx-auto max-w-[1200px] h-full flex items-center justify-between px-5 lg:px-8">
-        <a
-          href="/"
-          aria-label="Duc Le — Home"
-          className="display-md text-ink"
-          style={{ fontSize: 20, letterSpacing: "-0.04em" }}
+    <>
+      <header
+        ref={headerRef}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          transform: "translateY(0)",
+          transition: "transform 0.3s ease",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: 60,
+            padding: "0 clamp(20px, 4vw, 40px)",
+          }}
         >
-          ducle<span style={{ color: "var(--accent-blue)" }}>.</span>
-        </a>
+          <a
+            href="/"
+            aria-label="Duc Le — Home"
+            style={{
+              fontFamily: '"Google Sans", ui-sans-serif, sans-serif',
+              fontSize: 15,
+              fontWeight: 400,
+              letterSpacing: "0.02em",
+              color: "#ffffff",
+              textDecoration: "none",
+            }}
+          >
+            Duc Le
+          </a>
 
-        <nav className="hidden lg:flex items-center gap-7 absolute left-1/2 -translate-x-1/2">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="body-sm text-ink-muted hover:text-ink transition-colors"
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center lg:hidden">
           <button
             type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="btn-icon-circular focus-ring"
-            aria-label="Toggle menu"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
             aria-expanded={open}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              background: "none",
+              border: "none",
+              padding: "8px 0",
+              color: "rgba(255,255,255,0.65)",
+              cursor: "none",
+            }}
           >
-            <span className="sr-only">Menu</span>
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-              <path
-                d="M1 1h12M1 5h12M1 9h12"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 10,
+                letterSpacing: "0.14em",
+                textTransform: "lowercase",
+              }}
+            >
+              menu
+            </span>
+            <span
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 5,
+              }}
+            >
+              <span
+                style={{
+                  display: "block",
+                  width: 20,
+                  height: 1,
+                  background: "currentColor",
+                }}
               />
-            </svg>
+              <span
+                style={{
+                  display: "block",
+                  width: 13,
+                  height: 1,
+                  background: "currentColor",
+                }}
+              />
+            </span>
           </button>
         </div>
-      </div>
 
-      {open && (
-        <div
-          className="lg:hidden absolute top-full left-0 right-0 bg-canvas border-b border-[var(--hairline-soft)]"
-          style={{ backdropFilter: "blur(12px)" }}
-        >
-          <nav className="px-5 py-6 flex flex-col gap-1">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
+        {/* Full-width hairline */}
+        <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
+      </header>
+
+      {/* Full-screen overlay menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 100,
+              background: "#070707",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {/* Top bar */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                height: 60,
+                padding: "0 clamp(20px, 4vw, 40px)",
+                borderBottom: "1px solid rgba(255,255,255,0.07)",
+              }}
+            >
+              <a
+                href="/"
                 onClick={() => setOpen(false)}
-                className="subhead text-ink py-3"
+                style={{
+                  fontFamily: '"Google Sans", ui-sans-serif, sans-serif',
+                  fontSize: 15,
+                  fontWeight: 400,
+                  color: "#fff",
+                  textDecoration: "none",
+                }}
               >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
-    </header>
+                Duc Le
+              </a>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  background: "none",
+                  border: "none",
+                  color: "rgba(255,255,255,0.55)",
+                  cursor: "none",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 10,
+                  letterSpacing: "0.14em",
+                  textTransform: "lowercase",
+                }}
+              >
+                close ×
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav
+              style={{
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                padding: "0 clamp(20px, 6vw, 60px)",
+                gap: 0,
+              }}
+            >
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, x: -24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.05 + i * 0.07 }}
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 300,
+                    fontSize: "clamp(52px, 12vw, 100px)",
+                    letterSpacing: "-0.03em",
+                    lineHeight: 1.05,
+                    color: "rgba(255,255,255,0.55)",
+                    textDecoration: "none",
+                    display: "block",
+                    borderTop: i === 0 ? "1px solid rgba(255,255,255,0.07)" : "none",
+                    borderBottom: "1px solid rgba(255,255,255,0.07)",
+                    padding: "clamp(14px, 2.5vw, 24px) 0",
+                    transition: "color 0.15s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = "#ffffff";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)";
+                  }}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </nav>
+
+            {/* Footer */}
+            <div
+              style={{
+                padding: "20px clamp(20px, 4vw, 40px)",
+                borderTop: "1px solid rgba(255,255,255,0.07)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 10,
+                  letterSpacing: "0.1em",
+                  color: "rgba(255,255,255,0.35)",
+                }}
+              >
+                duclv145@gmail.com
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 10,
+                  letterSpacing: "0.1em",
+                  color: "rgba(255,255,255,0.35)",
+                }}
+              >
+                Hanoi · Vietnam
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

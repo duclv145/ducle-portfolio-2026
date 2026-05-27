@@ -103,8 +103,16 @@ export default function About() {
       <div className="mx-auto max-w-[1200px] px-5 lg:px-8">
         {/* Header */}
         <FadeIn>
-          <p className="caption text-ink-muted uppercase" style={{ letterSpacing: "0.18em" }}>
-            About
+          <p
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 10,
+              letterSpacing: "0.14em",
+              color: "rgba(255,255,255,0.4)",
+              textTransform: "lowercase",
+            }}
+          >
+            <span style={{ color: "var(--accent-blue)" }}>.</span>about
           </p>
         </FadeIn>
 
@@ -154,8 +162,8 @@ export default function About() {
 
             {/* Skills */}
             <FadeIn delay={0.2}>
-              <p className="caption text-ink-muted uppercase mt-12" style={{ letterSpacing: "0.18em" }}>
-                Disciplines
+              <p className="mt-12" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.14em", color: "rgba(255,255,255,0.4)", textTransform: "lowercase" }}>
+                <span style={{ color: "var(--accent-blue)" }}>.</span>disciplines
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {skills.map((s) => (
@@ -168,8 +176,8 @@ export default function About() {
 
             {/* Tools */}
             <FadeIn delay={0.25}>
-              <p className="caption text-ink-muted uppercase mt-10" style={{ letterSpacing: "0.18em" }}>
-                Tools
+              <p className="mt-10" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.14em", color: "rgba(255,255,255,0.4)", textTransform: "lowercase" }}>
+                <span style={{ color: "var(--accent-blue)" }}>.</span>tools
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {tools.map((t) => (
@@ -185,8 +193,8 @@ export default function About() {
 
             {/* Interests */}
             <FadeIn delay={0.28}>
-              <p className="caption text-ink-muted uppercase mt-10" style={{ letterSpacing: "0.18em" }}>
-                Interests
+              <p className="mt-10" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.14em", color: "rgba(255,255,255,0.4)", textTransform: "lowercase" }}>
+                <span style={{ color: "var(--accent-blue)" }}>.</span>interests
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {interests.map((t) => (
@@ -202,8 +210,8 @@ export default function About() {
 
             {/* Experience */}
             <FadeIn delay={0.3}>
-              <p className="caption text-ink-muted uppercase mt-14" style={{ letterSpacing: "0.18em" }}>
-                Experience · 10+ years
+              <p className="mt-14" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.14em", color: "rgba(255,255,255,0.4)", textTransform: "lowercase" }}>
+                <span style={{ color: "var(--accent-blue)" }}>.</span>experience · 10+ years
               </p>
             </FadeIn>
 
@@ -221,8 +229,8 @@ export default function About() {
 
             {/* Education */}
             <FadeIn delay={0.55}>
-              <p className="caption text-ink-muted uppercase mt-14" style={{ letterSpacing: "0.18em" }}>
-                Education
+              <p className="mt-14" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.14em", color: "rgba(255,255,255,0.4)", textTransform: "lowercase" }}>
+                <span style={{ color: "var(--accent-blue)" }}>.</span>education
               </p>
             </FadeIn>
             <div className="mt-2">

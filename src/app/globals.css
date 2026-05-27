@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
-/* ── Dashive Blue dark theme ──────────────────────────────────────── */
+/* ── Dark editorial theme ─────────────────────────────────────────── */
 :root {
-  --canvas:        #0022E5;
-  --surface-1:     rgba(255, 255, 255, 0.07);
-  --surface-2:     rgba(255, 255, 255, 0.13);
-  --hairline:      rgba(255, 255, 255, 0.16);
-  --hairline-soft: rgba(255, 255, 255, 0.09);
+  --canvas:        #070707;
+  --blue:          #0022E5;
+  --surface-1:     rgba(255, 255, 255, 0.06);
+  --surface-2:     rgba(255, 255, 255, 0.11);
+  --hairline:      rgba(255, 255, 255, 0.13);
+  --hairline-soft: rgba(255, 255, 255, 0.07);
   --ink:           #ffffff;
-  --ink-muted:     rgba(255, 255, 255, 0.55);
+  --ink-muted:     rgba(255, 255, 255, 0.5);
   --on-primary:    #0022E5;
   --primary:       #ffffff;
   --accent-blue:   #7eb8ff;
@@ -58,9 +59,6 @@ html {
 
 body {
   background-color: var(--canvas);
-  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
-  background-size: 18px 18px;
-  background-attachment: fixed;
   color: var(--ink);
   font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
