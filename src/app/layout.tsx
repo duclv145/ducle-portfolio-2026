@@ -4,7 +4,6 @@ import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 import ScrollProgress from "@/components/ScrollProgress";
 import CursorGlow from "@/components/CursorGlow";
-import Grain from "@/components/Grain";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-display",
@@ -65,7 +64,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-full flex flex-col bg-canvas text-ink" suppressHydrationWarning>
         <LenisProvider>
           <ScrollProgress />
-          <Grain opacity={0.09} />
           <CursorGlow />
           {children}
         </LenisProvider>

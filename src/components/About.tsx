@@ -4,7 +4,6 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import FadeIn from "./FadeIn";
-import NumberCounter from "./NumberCounter";
 
 const skills = [
   "Brand Identity",
@@ -88,12 +87,6 @@ const interests = [
   "Cinema",
 ];
 
-const stats = [
-  { to: 10, suffix: "+", label: "Years experience" },
-  { to: 8, suffix: "+", label: "Companies served" },
-  { to: 60, suffix: "+", label: "Projects delivered" },
-];
-
 export default function About() {
   const portraitRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -115,24 +108,7 @@ export default function About() {
           </p>
         </FadeIn>
 
-        {/* Stats row */}
-        <div className="mt-8 grid grid-cols-3 gap-4 max-w-sm">
-          {stats.map((s, i) => (
-            <FadeIn key={s.label} delay={i * 0.06}>
-              <div>
-                <p
-                  className="display-xl text-ink"
-                  style={{ lineHeight: 1, letterSpacing: "-0.04em" }}
-                >
-                  <NumberCounter to={s.to} suffix={s.suffix} duration={1.8} />
-                </p>
-                <p className="caption text-ink-muted mt-1" style={{ letterSpacing: "0.1em" }}>
-                  {s.label}
-                </p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
+
 
         <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
           {/* Left column */}
@@ -227,7 +203,7 @@ export default function About() {
             {/* Experience */}
             <FadeIn delay={0.3}>
               <p className="caption text-ink-muted uppercase mt-14" style={{ letterSpacing: "0.18em" }}>
-                Experience · <NumberCounter to={10} suffix="+" duration={1.6} /> years
+                Experience · 10+ years
               </p>
             </FadeIn>
 
