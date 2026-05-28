@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import FadeIn from "./FadeIn";
 import TextReveal from "./TextReveal";
+import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/projects";
 import type { Project } from "@/lib/projects";
 import ProjectModal from "./ProjectModal";
@@ -14,43 +15,35 @@ export default function Projects() {
 
   return (
     <>
-      <section
-        id="work"
-        className="border-t border-[var(--hairline-soft)]"
-        style={{ background: "var(--canvas)" }}
-      >
-        {/* Section header */}
-        <div className="mx-auto max-w-[1200px] px-5 lg:px-8 pt-24 pb-16 lg:pt-32 lg:pb-20">
-          <FadeIn>
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 10,
-                letterSpacing: "0.14em",
-                color: "rgba(255,255,255,0.4)",
-                textTransform: "lowercase",
-              }}
-            >
-              <span style={{ color: "var(--accent-blue)" }}>.</span>work
-            </p>
-          </FadeIn>
-          <h2 className="display-xl text-ink mt-5">
-            <TextReveal delay={0.06} stagger={0.055}>
-              Selected work.
-            </TextReveal>
-          </h2>
-        </div>
+      <section id="work" className="py-24 lg:py-32 border-t border-[var(--hairline-soft)]" style={{ background: "var(--canvas)" }}>
+        <div className="mx-auto max-w-[1200px] px-5 lg:px-8">
+          {/* Header */}
+          <div className="flex items-end justify-between gap-6 flex-wrap">
+            <div>
+              <FadeIn>
+                <p className="caption text-ink-muted uppercase" style={{ letterSpacing: "0.18em" }}>
+                  Work
+                </p>
+              </FadeIn>
+              <h2 className="display-xl text-ink mt-5 max-w-3xl">
+                <TextReveal delay={0.06} stagger={0.055}>
+                  Selected work.
+                </TextReveal>
+              </h2>
+            </div>
+          </div>
 
-        {/* Full-width card list */}
-        <div>
-          {projects.map((p, i) => (
-            <ProjectCard
-              key={p.slug}
-              project={p}
-              index={i}
-              onClick={() => setSelected(p)}
-            />
-          ))}
+          {/* 2-up card grid */}
+          <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {projects.map((p, i) => (
+              <ProjectTile
+                key={p.slug}
+                project={p}
+                index={i}
+                onClick={() => setSelected(p)}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -63,7 +56,7 @@ export default function Projects() {
   );
 }
 
-function ProjectCard({
+function ProjectTile({
   project,
   index,
   onClick,
@@ -72,135 +65,93 @@ function ProjectCard({
   index: number;
   onClick: () => void;
 }) {
-  const isBlue = index % 2 === 0;
-  const bgColor = isBlue ? "#0022E5" : "#ffffff";
-  const textColor = isBlue ? "#ffffff" : "#0022E5";
-  const mutedColor = isBlue ? "rgba(255,255,255,0.55)" : "rgba(0,34,229,0.5)";
-  const arrowColor = isBlue ? "rgba(255,255,255,0.35)" : "rgba(0,34,229,0.3)";
+  const delay = Math.min(index, 3) * 0.07;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 48 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.06 }}
-      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
+      whileInView={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{
+        clipPath: { duration: 0.85, ease: [0.22, 1, 0.36, 1], delay },
+        opacity: { duration: 0.4, ease: "easeOut", delay },
+      }}
     >
       <button
         onClick={onClick}
         data-cursor="view"
-        className="group w-full text-left block"
-        style={{
-          display: "block",
-          width: "100%",
-          textAlign: "left",
-          background: "none",
-          border: "none",
-          padding: 0,
-          cursor: "none",
-        }}
+        className="group block w-full text-left card-surface-1 transition-colors hover:bg-[var(--surface-2)] cursor-pointer"
+        style={{ padding: 16 }}
       >
-        {/* Card header */}
+        {/* Cover */}
         <div
-          style={{
-            background: bgColor,
-            color: textColor,
-            padding: "clamp(28px, 4.5vw, 56px) clamp(20px, 5vw, 80px)",
-          }}
-        >
-          {/* Top meta row */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 16,
-              flexWrap: "wrap",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 10,
-                letterSpacing: "0.12em",
-                color: mutedColor,
-                textTransform: "lowercase",
-              }}
-            >
-              {project.year} · {project.tags.slice(0, 2).join(", ")}
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 10,
-                letterSpacing: "0.12em",
-                color: mutedColor,
-                textTransform: "lowercase",
-              }}
-            >
-              {project.client}
-            </span>
-          </div>
-
-          {/* Title row */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "space-between",
-              gap: 24,
-              marginTop: "clamp(20px, 3.5vw, 40px)",
-            }}
-          >
-            <h3
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 600,
-                fontSize: "clamp(40px, 7.5vw, 92px)",
-                letterSpacing: "-0.03em",
-                lineHeight: 0.95,
-                color: textColor,
-                flex: 1,
-              }}
-            >
-              {project.title}
-            </h3>
-            <span
-              className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 300,
-                fontSize: "clamp(32px, 5vw, 60px)",
-                lineHeight: 1,
-                color: arrowColor,
-                flexShrink: 0,
-                display: "block",
-              }}
-            >
-              →
-            </span>
-          </div>
-        </div>
-
-        {/* Cover image */}
-        <div
-          style={{
-            position: "relative",
-            aspectRatio: "16/8",
-            overflow: "hidden",
-          }}
+          className="relative overflow-hidden bg-[var(--surface-2)]"
+          style={{ borderRadius: "var(--radius-lg)", aspectRatio: "4/3" }}
         >
           <Image
             src={project.cover}
             alt={project.title}
             fill
-            sizes="100vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            sizes="(max-width: 900px) 100vw, 50vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
           />
-          {/* Overlay on hover */}
           <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-            style={{ background: "rgba(0,0,0,0.12)" }}
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(0,0,0,0.25) 0%, transparent 30%, transparent 75%, rgba(0,0,0,0.45) 100%)",
+            }}
           />
+
+          {/* Hover overlay */}
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none flex items-center justify-center"
+            style={{ background: "rgba(0,0,0,0.15)" }}
+          >
+            <div
+              style={{
+                background: "rgba(255,255,255,0.95)",
+                borderRadius: 100,
+                padding: "10px 20px",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                fontFamily: '"Google Sans", ui-sans-serif, sans-serif',
+                fontSize: 11,
+                fontWeight: 600,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "#0022E5",
+                transform: "translateY(4px)",
+                transition: "transform 0.3s ease",
+              }}
+            >
+              View project <ArrowUpRight className="h-3.5 w-3.5" />
+            </div>
+          </div>
+        </div>
+
+        {/* Meta */}
+        <div className="px-2 pt-5 pb-2">
+          <div className="flex items-center justify-between gap-4">
+            <h3 className="display-md text-ink" style={{ letterSpacing: "-0.04em" }}>
+              {project.title}
+            </h3>
+            <ArrowUpRight className="h-5 w-5 text-ink-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent-blue)]" />
+          </div>
+          {project.tags && project.tags.length > 0 && (
+            <div className="flex gap-1.5 mt-2 flex-wrap">
+              {project.tags.slice(0, 3).map((tag) => (
+                <span
+                  key={tag}
+                  className="caption text-ink-muted"
+                  style={{ letterSpacing: "0.12em" }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </button>
     </motion.div>
