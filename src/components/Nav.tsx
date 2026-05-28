@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const links = [
   { href: "#about", label: "About" },
@@ -11,56 +11,15 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const headerRef = useRef<HTMLElement>(null);
-  const lastY = useRef(0);
-  const rafId = useRef<number | null>(null);
-  const isHidden = useRef(false);
-
-  useEffect(() => {
-    const header = headerRef.current;
-    if (!header) return;
-
-    const onScroll = () => {
-      if (rafId.current !== null) return;
-      rafId.current = requestAnimationFrame(() => {
-        const current = window.scrollY;
-        const goingDown = current > lastY.current + 8 && current > 80;
-        const goingUp   = current < lastY.current - 4;
-
-        if (goingDown && !isHidden.current) {
-          isHidden.current = true;
-          header.style.transform = "translateY(-100%)";
-          lastY.current = current;
-        } else if (goingUp && isHidden.current) {
-          isHidden.current = false;
-          header.style.transform = "translateY(0)";
-          lastY.current = current;
-        } else if (!goingDown && !goingUp) {
-          lastY.current = current;
-        }
-
-        rafId.current = null;
-      });
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafId.current !== null) cancelAnimationFrame(rafId.current);
-    };
-  }, []);
 
   return (
     <header
-      ref={headerRef}
       className="fixed top-0 left-0 right-0 z-50"
       style={{
         height: 56,
-        background: "rgba(0, 28, 190, 0.82)",
-        backdropFilter: "blur(20px) saturate(160%)",
-        borderBottom: "1px solid rgba(255,255,255,0.12)",
-        transform: "translateY(0)",
-        transition: "transform 0.3s ease",
+        background: "rgba(8,8,8,0.9)",
+        backdropFilter: "blur(16px)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
     >
       <div className="mx-auto max-w-[1200px] h-full flex items-center justify-between px-5 lg:px-8">
@@ -108,8 +67,8 @@ export default function Nav() {
 
       {open && (
         <div
-          className="lg:hidden absolute top-full left-0 right-0 bg-canvas border-b border-[var(--hairline-soft)]"
-          style={{ backdropFilter: "blur(12px)" }}
+          className="lg:hidden absolute top-full left-0 right-0 border-b border-[var(--hairline-soft)]"
+          style={{ background: "rgba(8,8,8,0.96)", backdropFilter: "blur(16px)" }}
         >
           <nav className="px-5 py-6 flex flex-col gap-1">
             {links.map((l) => (

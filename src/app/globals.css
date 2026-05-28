@@ -65,23 +65,7 @@ body {
   font-family: "Google Sans", "Google Sans Display", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Custom cursor on pointer devices */
-  cursor: none;
 }
-
-/* Restore default cursor on touch / coarse devices */
-@media (pointer: coarse) {
-  body { cursor: auto; }
-}
-
-/* Interactive elements keep pointer shape for accessibility */
-a, button, [role="button"], input, textarea, select, label {
-  cursor: none;
-}
-@media (pointer: coarse) {
-  a, button, [role="button"], input, textarea, select, label { cursor: auto; }
-}
-
 
 /* ── Selection ───────────────────────────────────────────────────── */
 ::selection {
