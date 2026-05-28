@@ -2,7 +2,7 @@
 
 /* ── Dashive Blue dark theme ──────────────────────────────────────── */
 :root {
-  --canvas:        #0022E5;
+  --canvas:        #080808;
   --surface-1:     rgba(255, 255, 255, 0.07);
   --surface-2:     rgba(255, 255, 255, 0.13);
   --hairline:      rgba(255, 255, 255, 0.16);
