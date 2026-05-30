@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Design tokens — Tailwind v4 generates utilities from these.
+ *   --color-accent  -> bg-accent / text-accent / border-accent ...
+ *   --font-display  -> font-display utility
+ * ------------------------------------------------------------------ */
+@theme {
+  /* Chartreuse / lime neon accent */
+  --color-accent: #d4ff3f;
+  --color-accent-dim: #b7e22f;
+
+  /* Fonts are wired from next/font CSS variables (see app/layout.tsx) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Lime text selection */
+::selection {
+  background-color: var(--color-accent);
+  color: #000000;
+}
+
+/* Dark, minimal scrollbar to match the theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #1c1c1c;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2c2c2c;
+}
+
+/* ------------------------------------------------------------------ *
+ * Lenis smooth-scroll recommended resets
+ * ------------------------------------------------------------------ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
