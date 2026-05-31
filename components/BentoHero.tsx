@@ -1,0 +1,296 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
+import { scrollToId } from "./LenisProvider";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const NOISE_URL =
+  "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='cn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23cn)' opacity='.55'/%3E%3C/svg%3E\")";
+
+function NoiseLayer({ className = "" }: { className?: string }) {
+  return (
+    <span
+      aria-hidden
+      className={`pointer-events-none absolute inset-0 opacity-[0.32] mix-blend-overlay ${className}`}
+      style={{ backgroundImage: NOISE_URL, backgroundSize: "160px 160px" }}
+    />
+  );
+}
+
+const cards = [
+  { label: "About", id: "about", className: "lg:col-span-3" },
+  { label: "Portfolio", id: "work", className: "lg:col-span-9" },
+  { label: "Contact", id: "contact", className: "lg:col-span-6" },
+  { label: "Resume", id: "experience", className: "lg:col-span-3 lg:col-start-10" },
+];
+
+function Arrow() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-6 w-6"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.8"
+      aria-hidden
+    >
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </svg>
+  );
+}
+
+function Card({
+  label,
+  id,
+  href,
+  className = "",
+  onPreview,
+  children,
+}: {
+  label: string;
+  id: string;
+  href?: string;
+  className?: string;
+  onPreview?: (word: string | null) => void;
+  children?: React.ReactNode;
+}) {
+  const cls = `group relative flex min-h-[220px] overflow-hidden rounded-[28px] bg-[#161616]/80 p-7 text-left shadow-[0_16px_50px_rgba(0,0,0,0.3)] backdrop-blur-md transition duration-500 hover:-translate-y-1 hover:bg-[#0a0a0a]/80 md:min-h-[260px] md:p-8 lg:h-full ${className}`;
+
+  const handlers = {
+    onFocus: () => onPreview?.(label),
+    onBlur: () => onPreview?.(null),
+    onPointerEnter: () => onPreview?.(label),
+    onPointerLeave: () => onPreview?.(null),
+  };
+
+  const inner = (
+    <>
+      <NoiseLayer />
+      {children}
+      {/* Roll-swap label: white rolls up, lime rolls in */}
+      <span className="absolute bottom-8 left-8 z-20 block h-[1.1em] overflow-hidden text-[13px] font-semibold leading-none tracking-[-0.035em] md:text-base">
+        <span className="flex flex-col transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1/2">
+          <span className="block h-[1.1em] text-white">{label}</span>
+          <span className="block h-[1.1em] text-accent">{label}</span>
+        </span>
+      </span>
+      <span className="absolute bottom-8 right-8 z-20 text-white/85 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+        <Arrow />
+      </span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className={cls} {...handlers}>
+        {inner}
+      </Link>
+    );
+  }
+  return (
+    <button type="button" onClick={() => scrollToId(id)} className={cls} {...handlers}>
+      {inner}
+    </button>
+  );
+}
+
+const STACK_LOGOS = [
+  { src: "/stack/claude.png", alt: "Claude" },
+  { src: "/stack/chatgpt.png", alt: "ChatGPT" },
+  { src: "/stack/gemini.png", alt: "Gemini" },
+  { src: "/stack/ai.png", alt: "Illustrator" },
+  { src: "/stack/ps.png", alt: "Photoshop" },
+  { src: "/stack/id.png", alt: "InDesign" },
+  { src: "/stack/ae.png", alt: "After Effects" },
+  { src: "/stack/pr.png", alt: "Premiere Pro" },
+  { src: "/stack/lr.png", alt: "Lightroom" },
+];
+
+function ToolIcon({ src, alt }: { src: string; alt: string }) {
+  const isAdobeLogo = /\/stack\/(ai|ps|id|ae|pr|lr)\.png$/.test(src);
+  const isFullFrameLogo = /\/stack\/(chatgpt|gemini)\.png$/.test(src);
+
+  return (
+    <span className="relative mr-5 h-[74px] w-[74px] shrink-0 overflow-hidden rounded-[16px] bg-[#222] md:h-[84px] md:w-[84px]">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="84px"
+        className={isAdobeLogo || isFullFrameLogo ? "scale-[1.08] object-cover" : "object-contain p-3"}
+      />
+    </span>
+  );
+}
+
+function StackRail() {
+  return (
+    <div className="pointer-events-none absolute inset-0 flex items-center overflow-hidden">
+      <motion.div
+        className="flex w-max items-center"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+      >
+        {[...STACK_LOGOS, ...STACK_LOGOS].map((l, index) => (
+          <ToolIcon key={`${l.alt}-${index}`} src={l.src} alt={l.alt} />
+        ))}
+      </motion.div>
+      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#161616] to-transparent" />
+      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#161616] to-transparent" />
+    </div>
+  );
+}
+
+const wordContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.045, delayChildren: 0.02 } },
+  exit: { transition: { staggerChildren: 0.025, staggerDirection: -1 } },
+};
+const letterVariant = {
+  hidden: { opacity: 0, y: 44, scale: 0.8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.55, ease: EASE },
+  },
+  exit: {
+    opacity: 0,
+    y: -28,
+    transition: { duration: 0.3, ease: EASE },
+  },
+};
+
+function HeroWord({ word }: { word: string }) {
+  const chars = [...word];
+  return (
+    <div className="pointer-events-none absolute left-1/2 top-[7.35rem] z-[5] flex -translate-x-1/2 whitespace-nowrap font-display text-[clamp(4rem,11.2vw,11.2rem)] font-black leading-none tracking-[-0.01em] text-white md:top-[5.85rem]">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={word}
+          className="flex"
+          variants={wordContainer}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+        >
+          {chars.map((c, i) => (
+            <motion.span
+              key={`${word}-${i}`}
+              variants={letterVariant}
+              className="inline-block whitespace-pre will-change-transform"
+            >
+              {c}
+            </motion.span>
+          ))}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export default function BentoHero() {
+  const [time, setTime] = useState("");
+  const [previewWord, setPreviewWord] = useState<string | null>(null);
+
+  useEffect(() => {
+    const tick = () => {
+      setTime(
+        new Date().toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          timeZone: "Asia/Ho_Chi_Minh",
+        }),
+      );
+    };
+    tick();
+    const id = window.setInterval(tick, 20_000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <section
+      id="home"
+      className="relative min-h-[100svh] overflow-hidden bg-[#050505] p-4 text-white md:p-5"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.18]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 25% 15%, rgba(255,255,255,0.17), transparent 26%), radial-gradient(circle at 75% 0%, rgba(255,255,255,0.1), transparent 22%), linear-gradient(115deg, transparent 0 45%, rgba(255,255,255,0.04) 46% 47%, transparent 48% 100%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.28]"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E\")",
+          backgroundSize: "180px 180px",
+        }}
+      />
+
+      <header className="relative z-30 flex items-center justify-between px-2 py-2 text-[13px] font-semibold tracking-[-0.035em] text-white/90 md:px-3 md:text-base">
+        <div className="flex items-center gap-12 md:gap-28">
+          <button type="button" onClick={() => scrollToId("home")} className="transition hover:text-white">
+            Duc Le
+          </button>
+          <span className="hidden sm:inline">Senior Graphic Designer</span>
+        </div>
+        <div className="flex items-center gap-10">
+          <span className="hidden sm:inline">Ha Noi • {time}</span>
+          <span className="h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.4)]" />
+        </div>
+      </header>
+
+      <HeroWord word={previewWord ?? "Duc Le"} />
+
+      <div className="relative z-10 mt-[7.5rem] grid grid-cols-1 gap-4 md:mt-[8.2rem] lg:h-[calc(100svh-208px)] lg:grid-cols-12 lg:grid-rows-2">
+        <Card label="About" id="about" href="/about" className={cards[0].className} onPreview={setPreviewWord} />
+
+        <Card label="Portfolio" id="work" href="/portfolio" className={cards[1].className} onPreview={setPreviewWord} />
+
+        <Card label="Contact" id="contact" href="/contact" className={cards[2].className} onPreview={setPreviewWord} />
+
+        <div className="group relative min-h-[260px] overflow-hidden rounded-[28px] bg-[#111] shadow-[0_16px_50px_rgba(0,0,0,0.28)] lg:col-span-3 lg:h-full">
+          <Image
+            src="/avatar.png"
+            alt="Duc Le"
+            fill
+            sizes="(max-width: 1024px) 100vw, 25vw"
+            className="object-cover object-[50%_28%] grayscale transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] group-hover:grayscale-0"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/45" />
+          <NoiseLayer className="opacity-[0.1]" />
+        </div>
+
+        <div className="grid min-h-[320px] grid-rows-2 gap-4 lg:col-span-3 lg:h-full lg:min-h-0">
+          <div
+            onPointerEnter={() => setPreviewWord("Stack")}
+            onPointerLeave={() => setPreviewWord(null)}
+            className="relative min-h-[150px] overflow-hidden rounded-[28px] bg-[#161616]/80 shadow-[0_16px_50px_rgba(0,0,0,0.3)] backdrop-blur-md lg:min-h-0"
+          >
+            <NoiseLayer />
+            <StackRail />
+          </div>
+
+          <Card
+            label="Resume"
+            id="experience"
+            onPreview={setPreviewWord}
+            className="min-h-[150px] md:min-h-[150px] lg:min-h-0"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}

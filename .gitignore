@@ -27,6 +27,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
+# codegraph index (local)
+/.codegraph/
+
 # editor / os
 .idea
 .vscode

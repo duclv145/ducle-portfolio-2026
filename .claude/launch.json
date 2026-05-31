@@ -1,0 +1,4 @@
+{
+  "autoPort": true,
+  "command": "npx next dev"
+}

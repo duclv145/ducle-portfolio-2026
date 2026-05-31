@@ -129,6 +129,17 @@ export const projects: Project[] = [
   },
 ];
 
+export function projectSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export function getProject(slug: string): Project | undefined {
+  return projects.find((p) => projectSlug(p.name) === slug);
+}
+
 export const disciplines: string[] = [
   "Brand Identity",
   "Visual Identity",

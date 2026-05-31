@@ -6,7 +6,7 @@ import { experience } from "@/lib/data";
 
 export default function Experience() {
   return (
-    <section id="experience" className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-28">
+    <section id="experience" className="mx-auto max-w-[1280px] px-6 py-10 md:px-10 md:py-14">
       <Reveal className="mb-12 flex flex-col gap-5">
         <h2 className="font-display text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.2] tracking-[-0.02em] text-white">
           <SplitText text="Experience" stagger={0.08} distance={40} />
