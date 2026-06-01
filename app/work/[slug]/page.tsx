@@ -32,7 +32,7 @@ export default async function WorkPage({
   const next = { name: nextP.name, slug: projectSlug(nextP.name) };
 
   return (
-    <main className="relative min-h-screen bg-[#050505]">
+    <main className="relative min-h-screen bg-bg">
       <TopBar backHref="/portfolio" backLabel="Back" />
       <WorkDetail project={project} next={next} />
       <ContactFooter />

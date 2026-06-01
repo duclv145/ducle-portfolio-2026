@@ -94,7 +94,7 @@ export default function ProjectModal({ project, onClose }: Props) {
 
           {/* Panel — same bounds as the cover card */}
           <motion.div
-            className="fixed bottom-0 left-0 right-0 top-0 z-[210] flex flex-col overflow-hidden rounded-[28px] border border-accent/55 bg-[#0e0e0e] lg:left-[210px] lg:m-6"
+            className="fixed bottom-0 left-0 right-0 top-0 z-[210] flex flex-col overflow-hidden rounded-[28px] border border-accent/55 bg-surface-2 lg:left-[210px] lg:m-6"
             initial={{ opacity: 0, y: 40, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.97 }}
@@ -104,7 +104,7 @@ export default function ProjectModal({ project, onClose }: Props) {
             <motion.div
               animate={{ y: headerVisible ? 0 : "-100%" }}
               transition={{ duration: 0.35, ease: EASE }}
-              className="absolute inset-x-0 top-0 z-10 flex items-center justify-between border-b border-white/10 bg-[#0e0e0e]/90 px-6 py-4 backdrop-blur-md md:px-10 lg:px-16">
+              className="absolute inset-x-0 top-0 z-10 flex items-center justify-between border-b border-white/10 bg-surface-2/90 px-6 py-4 backdrop-blur-md md:px-10 lg:px-16">
               <div className="flex flex-col gap-0.5">
                 <h2 className="font-display text-xl font-bold text-white md:text-2xl">
                   {project.name}

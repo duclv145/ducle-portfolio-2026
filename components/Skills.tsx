@@ -21,7 +21,7 @@ export default function Skills() {
         {disciplines.map((d, i) => (
           <Reveal key={d} delay={i * 0.04}>
             <div className="group flex items-center justify-between border-b border-white/10 py-3 md:py-4">
-              <span className="font-display text-[clamp(2.25rem,8vw,6.5rem)] font-bold leading-[1.05] tracking-[-0.02em] text-transparent transition-all duration-300 [-webkit-text-stroke:1.2px_rgba(255,255,255,0.28)] group-hover:text-accent group-hover:[-webkit-text-stroke:1.2px_transparent]">
+              <span className="font-display text-[clamp(2.25rem,8vw,6.5rem)] font-bold leading-[1.05] tracking-[-0.02em] text-transparent transition-all duration-300 [-webkit-text-stroke:1.2px_var(--ghost-stroke)] group-hover:text-accent group-hover:[-webkit-text-stroke:1.2px_transparent]">
                 {d}
               </span>
               <span className="hidden shrink-0 text-sm tabular-nums text-neutral-600 transition-colors duration-300 group-hover:text-accent sm:block">

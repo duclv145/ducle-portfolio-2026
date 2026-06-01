@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Hanken_Grotesk } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 
@@ -27,8 +28,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${display.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${display.variable}`}>
       <body className="bg-black text-white antialiased">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {"try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light')}catch(e){}"}
+        </Script>
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>

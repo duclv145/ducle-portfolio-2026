@@ -9,10 +9,50 @@
   /* Chartreuse / lime neon accent */
   --color-accent: #d4ff3f;
   --color-accent-dim: #b7e22f;
+  --color-on-accent: #0a0a0a; /* readable text/icon colour on accent fills */
+
+  /* Surface tokens (dark defaults; flipped under html.light) */
+  --color-bg: #050505;
+  --color-surface: #161616;
+  --color-surface-2: #0e0e0e;
 
   /* Fonts are wired from next/font CSS variables (see app/layout.tsx) */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Theme-flipping helpers */
+:root {
+  --ghost-stroke: rgba(255, 255, 255, 0.28);
+  --accent-glow: rgba(212, 255, 63, 0.7);
+  --accent-glow-strong: rgba(212, 255, 63, 0.9);
+}
+
+/* ------------------------------------------------------------------ *
+ * Light theme — re-maps the base palette so existing white/black/
+ * neutral utilities invert automatically.
+ * ------------------------------------------------------------------ */
+html.light {
+  --color-bg: #f4f4f2;
+  --color-surface: #ffffff;
+  --color-surface-2: #efeeec;
+
+  /* Dashive electric-blue accent for the light theme */
+  --color-accent: #1112fa;
+  --color-accent-dim: #0d0dd6;
+  --color-on-accent: #ffffff;
+
+  --color-white: #111111;        /* text-white -> near-black ink   */
+  --color-black: #f4f4f2;        /* bg-black   -> light surface     */
+  --color-neutral-200: #262626;
+  --color-neutral-300: #3d3d3d;
+  --color-neutral-400: #565656;
+  --color-neutral-500: #6f6f6f;
+  --color-neutral-600: #8a8a8a;
+  --color-neutral-950: #e7e6e3;
+  --ghost-stroke: rgba(17, 17, 17, 0.22);
+  --accent-glow: rgba(17, 18, 250, 0.4);
+  --accent-glow-strong: rgba(17, 18, 250, 0.6);
 }
 
 /* ------------------------------------------------------------------ *
@@ -25,17 +65,18 @@ html {
 }
 
 body {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--color-bg);
+  color: var(--color-white);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Lime text selection */
 ::selection {
   background-color: var(--color-accent);
-  color: #000000;
+  color: var(--color-on-accent);
 }
 
 /* Dark, minimal scrollbar to match the theme */
@@ -51,6 +92,15 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #2c2c2c;
+}
+html.light ::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #d2d2cf;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #c0c0bd;
 }
 
 /* ------------------------------------------------------------------ *

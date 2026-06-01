@@ -7,13 +7,14 @@ import { contact } from "@/lib/data";
 export default function Contact() {
   return (
     <section id="contact" className="relative overflow-hidden border-t border-white/10">
-      {/* Lime glow backdrop */}
+      {/* Accent glow backdrop (flips lime ↔ Dashive blue with theme) */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%]"
         style={{
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 100%, rgba(212,255,63,0.10) 0%, transparent 70%)",
+            "radial-gradient(ellipse 70% 50% at 50% 100%, var(--accent-glow) 0%, transparent 70%)",
+          opacity: 0.16,
         }}
       />
 
@@ -78,7 +79,7 @@ export default function Contact() {
         <Reveal delay={0.2} className="mt-14">
           <a
             href={`mailto:${contact.email}`}
-            className="inline-flex items-center gap-3 rounded-2xl bg-accent px-8 py-4 text-base font-bold text-black shadow-[0_0_50px_-6px_rgba(212,255,63,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_64px_0px_rgba(212,255,63,0.95)] active:translate-y-0"
+            className="inline-flex items-center gap-3 rounded-2xl bg-accent px-8 py-4 text-base font-bold text-on-accent shadow-[0_0_50px_-6px_var(--accent-glow)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_64px_0px_var(--accent-glow-strong)] active:translate-y-0"
           >
             Send me a message
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"

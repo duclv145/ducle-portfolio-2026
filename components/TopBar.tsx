@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import ThemeToggle from "./ThemeToggle";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -55,18 +56,18 @@ export default function TopBar({
         transition={{ duration: 0.95, ease: EASE, delay: 0.08 }}
         className="flex items-center justify-between gap-4 px-6 py-4 text-[15px] font-medium tracking-[-0.01em] md:px-8 md:text-base"
       >
-        <div className="flex items-center gap-8 md:gap-16">
+        <div className="flex items-center gap-3 sm:gap-8 md:gap-16">
           <Link
             href={backHref}
-            className="flex items-center gap-2 text-white transition-colors hover:text-accent"
+            className="flex shrink-0 items-center gap-2 text-white transition-colors hover:text-accent"
           >
             <span aria-hidden>←</span> {backLabel}
           </Link>
-          <span className="hidden text-neutral-400 sm:inline">Senior Graphic Designer</span>
+          <span className="text-neutral-400">Senior Graphic Designer</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="tabular-nums text-neutral-400">Ha Noi • {time}</span>
-          <span className="h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.4)]" />
+          <span className="hidden tabular-nums text-neutral-400 sm:inline">Ha Noi • {time}</span>
+          <ThemeToggle />
         </div>
       </motion.div>
     </motion.header>

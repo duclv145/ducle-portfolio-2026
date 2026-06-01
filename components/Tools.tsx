@@ -15,7 +15,7 @@ function RingIcon({ children }: { children: React.ReactNode }) {
           "conic-gradient(from 150deg, rgba(212,255,63,0.65) 0deg, rgba(212,255,63,0.08) 110deg, rgba(30,30,30,1) 160deg, rgba(30,30,30,1) 360deg)",
       }}
     >
-      <div className="flex h-[78px] w-[78px] items-center justify-center rounded-full bg-[#111111]">
+      <div className="flex h-[78px] w-[78px] items-center justify-center rounded-full bg-surface-2">
         {children}
       </div>
     </div>

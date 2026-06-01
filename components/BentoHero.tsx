@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { scrollToId } from "./LenisProvider";
+import ThemeToggle from "./ThemeToggle";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -22,9 +23,9 @@ function NoiseLayer({ className = "" }: { className?: string }) {
 }
 
 const cards = [
-  { label: "About", id: "about", className: "lg:col-span-3" },
-  { label: "Portfolio", id: "work", className: "lg:col-span-9" },
-  { label: "Contact", id: "contact", className: "lg:col-span-6" },
+  { label: "About", id: "about", className: "col-span-2 lg:col-span-3" },
+  { label: "Portfolio", id: "work", className: "col-span-2 lg:col-span-9" },
+  { label: "Contact", id: "contact", className: "col-span-1 lg:col-span-6" },
   { label: "Resume", id: "experience", className: "lg:col-span-3 lg:col-start-10" },
 ];
 
@@ -61,7 +62,7 @@ function Card({
   onPreview?: (word: string | null) => void;
   children?: React.ReactNode;
 }) {
-  const cls = `group relative flex min-h-[220px] overflow-hidden rounded-[28px] bg-[#161616]/80 p-7 text-left shadow-[0_16px_50px_rgba(0,0,0,0.3)] backdrop-blur-md transition duration-500 hover:-translate-y-1 hover:bg-[#0a0a0a]/80 md:min-h-[260px] md:p-8 lg:h-full ${className}`;
+  const cls = `group relative flex min-h-[220px] overflow-hidden rounded-[28px] bg-surface/80 p-7 text-left shadow-[0_16px_50px_rgba(0,0,0,0.3)] backdrop-blur-md transition duration-500 hover:-translate-y-1 hover:bg-surface-2/80 md:min-h-[260px] md:p-8 lg:h-full ${className}`;
 
   const handlers = {
     onFocus: () => onPreview?.(label),
@@ -125,7 +126,7 @@ function ToolIcon({ src, alt }: { src: string; alt: string }) {
   const isFullFrameLogo = /\/stack\/(chatgpt|gemini)\.png$/.test(src);
 
   return (
-    <span className="relative mr-5 h-[74px] w-[74px] shrink-0 overflow-hidden rounded-[16px] bg-[#222] md:h-[84px] md:w-[84px]">
+    <span className="relative mr-5 h-[74px] w-[74px] shrink-0 overflow-hidden rounded-[16px] bg-surface md:h-[84px] md:w-[84px]">
       <Image
         src={src}
         alt={alt}
@@ -149,8 +150,8 @@ function StackRail() {
           <ToolIcon key={`${l.alt}-${index}`} src={l.src} alt={l.alt} />
         ))}
       </motion.div>
-      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#161616] to-transparent" />
-      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#161616] to-transparent" />
+      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-surface to-transparent" />
+      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-surface to-transparent" />
     </div>
   );
 }
@@ -178,7 +179,7 @@ const letterVariant = {
 function HeroWord({ word }: { word: string }) {
   const chars = [...word];
   return (
-    <div className="pointer-events-none absolute left-1/2 top-[7.35rem] z-[5] flex -translate-x-1/2 whitespace-nowrap font-display text-[clamp(4rem,11.2vw,11.2rem)] font-black leading-none tracking-[-0.01em] text-white md:top-[5.85rem]">
+    <div className="pointer-events-none absolute left-1/2 top-[7.6rem] z-[5] flex -translate-x-1/2 whitespace-nowrap font-display text-[clamp(5.75rem,11.2vw,11.2rem)] font-black leading-none tracking-[-0.01em] text-white md:top-[5.85rem]">
       <AnimatePresence mode="wait">
         <motion.div
           key={word}
@@ -225,7 +226,7 @@ export default function BentoHero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] overflow-hidden bg-[#050505] px-4 pb-4 text-white md:px-5 md:pb-5"
+      className="relative min-h-[100svh] overflow-hidden bg-bg px-4 pb-4 text-white md:px-5 md:pb-5"
     >
       <div
         aria-hidden
@@ -252,33 +253,33 @@ export default function BentoHero() {
           transition={{ duration: 0.95, ease: EASE, delay: 0.08 }}
           className="flex items-center justify-between gap-4 text-[15px] font-medium tracking-[-0.01em] md:text-base"
         >
-          <div className="flex items-center gap-8 md:gap-16">
+          <div className="flex items-center gap-3 sm:gap-8 md:gap-16">
             <button
               type="button"
               onClick={() => scrollToId("home")}
-              className="text-white transition-colors hover:text-accent"
+              className="shrink-0 text-white transition-colors hover:text-accent"
             >
               Duc Le
             </button>
-            <span className="hidden text-neutral-400 sm:inline">Senior Graphic Designer</span>
+            <span className="text-neutral-400">Senior Graphic Designer</span>
           </div>
           <div className="flex items-center gap-4">
             <span className="hidden tabular-nums text-neutral-400 sm:inline">Ha Noi • {time}</span>
-            <span className="h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.4)]" />
+            <ThemeToggle />
           </div>
         </motion.div>
       </header>
 
       <HeroWord word={previewWord ?? "Duc Le"} />
 
-      <div className="relative z-10 mt-[7.5rem] grid grid-cols-1 gap-4 md:mt-[8.2rem] lg:h-[calc(100svh-208px)] lg:grid-cols-12 lg:grid-rows-2">
+      <div className="relative z-10 mt-[7.5rem] grid grid-cols-2 gap-3 md:mt-[8.2rem] md:gap-4 lg:h-[calc(100svh-208px)] lg:grid-cols-12 lg:grid-rows-2">
         <Card label="About" id="about" href="/about" className={cards[0].className} onPreview={setPreviewWord} />
 
         <Card label="Portfolio" id="work" href="/portfolio" className={cards[1].className} onPreview={setPreviewWord} />
 
         <Card label="Contact" id="contact" href="/contact" className={cards[2].className} onPreview={setPreviewWord} />
 
-        <div className="group relative min-h-[260px] overflow-hidden rounded-[28px] bg-[#111] shadow-[0_16px_50px_rgba(0,0,0,0.28)] lg:col-span-3 lg:h-full">
+        <div className="group relative col-span-1 min-h-[220px] overflow-hidden rounded-[28px] bg-surface-2 shadow-[0_16px_50px_rgba(0,0,0,0.28)] sm:min-h-[260px] lg:col-span-3 lg:h-full">
           <Image
             src="/avatar.png"
             alt="Duc Le"
@@ -291,11 +292,11 @@ export default function BentoHero() {
           <NoiseLayer className="opacity-[0.1]" />
         </div>
 
-        <div className="grid min-h-[320px] grid-rows-2 gap-4 lg:col-span-3 lg:h-full lg:min-h-0">
+        <div className="col-span-2 grid grid-cols-2 gap-3 md:gap-4 lg:col-span-3 lg:h-full lg:grid-cols-1 lg:grid-rows-2">
           <div
             onPointerEnter={() => setPreviewWord("Stack")}
             onPointerLeave={() => setPreviewWord(null)}
-            className="relative min-h-[150px] overflow-hidden rounded-[28px] bg-[#161616]/80 shadow-[0_16px_50px_rgba(0,0,0,0.3)] backdrop-blur-md lg:min-h-0"
+            className="relative min-h-[150px] overflow-hidden rounded-[28px] bg-surface/80 shadow-[0_16px_50px_rgba(0,0,0,0.3)] backdrop-blur-md lg:min-h-0"
           >
             <NoiseLayer />
             <StackRail />
