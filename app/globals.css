@@ -26,6 +26,11 @@
   --ghost-stroke: rgba(255, 255, 255, 0.28);
   --accent-glow: rgba(212, 255, 63, 0.7);
   --accent-glow-strong: rgba(212, 255, 63, 0.9);
+  --liquid-fill: rgba(16, 16, 16, 0.22);
+  --liquid-fallback-fill: rgba(24, 24, 24, 0.28);
+  --liquid-border: rgba(255, 255, 255, 0.12);
+  --liquid-border-strong: rgba(255, 255, 255, 0.16);
+  --liquid-noise: 0.06;
 }
 
 /* ------------------------------------------------------------------ *
@@ -53,6 +58,11 @@ html.light {
   --ghost-stroke: rgba(17, 17, 17, 0.22);
   --accent-glow: rgba(17, 18, 250, 0.4);
   --accent-glow-strong: rgba(17, 18, 250, 0.6);
+  --liquid-fill: rgba(255, 255, 255, 0.22);
+  --liquid-fallback-fill: rgba(255, 255, 255, 0.28);
+  --liquid-border: rgba(17, 17, 17, 0.12);
+  --liquid-border-strong: rgba(17, 17, 17, 0.16);
+  --liquid-noise: 0.04;
 }
 
 /* ------------------------------------------------------------------ *
@@ -71,6 +81,51 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ------------------------------------------------------------------ *
+ * Liquid glass cards
+ * Explicit CSS keeps the effect closer between Chrome, Safari, and
+ * Firefox than stacked arbitrary utility classes.
+ * ------------------------------------------------------------------ */
+.liquid-glass-base,
+.liquid-glass-noise {
+  position: absolute;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.liquid-glass-base {
+  inset: 0;
+  z-index: 0;
+  border: 1px solid var(--liquid-border);
+  background: var(--liquid-fill);
+  -webkit-backdrop-filter: blur(3px) saturate(108%);
+  backdrop-filter: blur(3px) saturate(108%);
+}
+
+.liquid-glass-media {
+  z-index: 2;
+  border-color: var(--liquid-border-strong);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.liquid-glass-noise {
+  inset: 0;
+  z-index: 3;
+  opacity: var(--liquid-noise);
+}
+
+.liquid-glass-noise-media {
+  opacity: calc(var(--liquid-noise) * 0.55);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .liquid-glass-base {
+    background: var(--liquid-fallback-fill);
+  }
 }
 
 /* Lime text selection */

@@ -22,6 +22,25 @@ function NoiseLayer({ className = "" }: { className?: string }) {
   );
 }
 
+function LiquidNoise({ media = false }: { media?: boolean }) {
+  return (
+    <span
+      aria-hidden
+      className={`liquid-glass-noise ${media ? "liquid-glass-noise-media" : ""}`}
+      style={{ backgroundImage: NOISE_URL, backgroundSize: "160px 160px" }}
+    />
+  );
+}
+
+function LiquidGlassLayer({ media = false }: { media?: boolean }) {
+  return (
+    <>
+      <span aria-hidden className={`liquid-glass-base ${media ? "liquid-glass-media" : ""}`} />
+      <LiquidNoise media={media} />
+    </>
+  );
+}
+
 const cards = [
   { label: "About", id: "about", className: "col-span-2 lg:col-span-3" },
   { label: "Portfolio", id: "work", className: "col-span-2 lg:col-span-9" },
@@ -62,7 +81,7 @@ function Card({
   onPreview?: (word: string | null) => void;
   children?: React.ReactNode;
 }) {
-  const cls = `group relative flex min-h-[160px] overflow-hidden rounded-[22px] bg-surface/80 p-5 text-left shadow-[0_16px_50px_rgba(0,0,0,0.3)] backdrop-blur-md transition duration-500 hover:-translate-y-1 hover:bg-surface-2/80 md:min-h-[260px] md:rounded-[28px] md:p-8 lg:h-full ${className}`;
+  const cls = `group relative flex min-h-[160px] overflow-hidden rounded-[22px] bg-transparent p-5 text-left transition duration-500 hover:-translate-y-1 md:min-h-[260px] md:rounded-[28px] md:p-8 lg:h-full ${className}`;
 
   const handlers = {
     onFocus: () => onPreview?.(label),
@@ -73,7 +92,7 @@ function Card({
 
   const inner = (
     <>
-      <NoiseLayer />
+      <LiquidGlassLayer />
       {children}
       {/* Roll-swap label: white rolls up, lime rolls in */}
       <span className="absolute bottom-5 left-5 z-20 block h-[1.1em] overflow-hidden text-[13px] font-semibold leading-none tracking-[-0.035em] md:bottom-8 md:left-8 md:text-base">
@@ -140,7 +159,7 @@ function ToolIcon({ src, alt }: { src: string; alt: string }) {
 
 function StackRail() {
   return (
-    <div className="pointer-events-none absolute inset-0 flex items-center overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 z-10 flex items-center overflow-hidden">
       <motion.div
         className="flex w-max items-center"
         animate={{ x: ["0%", "-50%"] }}
@@ -279,7 +298,7 @@ export default function BentoHero() {
 
         <Card label="Contact" id="contact" href="/contact" className={cards[2].className} onPreview={setPreviewWord} />
 
-        <div className="group relative col-span-1 min-h-[160px] overflow-hidden rounded-[22px] bg-surface-2 shadow-[0_16px_50px_rgba(0,0,0,0.28)] md:min-h-[260px] md:rounded-[28px] lg:col-span-3 lg:h-full">
+        <div className="group relative col-span-1 min-h-[160px] overflow-hidden rounded-[22px] bg-surface-2 md:min-h-[260px] md:rounded-[28px] lg:col-span-3 lg:h-full">
           <Image
             src="/avatar.png"
             alt="Duc Le"
@@ -289,16 +308,16 @@ export default function BentoHero() {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/45" />
-          <NoiseLayer className="opacity-[0.1]" />
+          <LiquidGlassLayer media />
         </div>
 
         <div className="col-span-2 grid grid-cols-2 gap-2.5 md:gap-4 lg:col-span-3 lg:h-full lg:grid-cols-1 lg:grid-rows-2">
           <div
             onPointerEnter={() => setPreviewWord("Stack")}
             onPointerLeave={() => setPreviewWord(null)}
-            className="relative min-h-[160px] overflow-hidden rounded-[22px] bg-surface/80 shadow-[0_16px_50px_rgba(0,0,0,0.3)] backdrop-blur-md md:min-h-[220px] md:rounded-[28px] lg:min-h-0"
+            className="group relative min-h-[160px] overflow-hidden rounded-[22px] bg-transparent md:min-h-[220px] md:rounded-[28px] lg:min-h-0"
           >
-            <NoiseLayer />
+            <LiquidGlassLayer />
             <StackRail />
           </div>
 

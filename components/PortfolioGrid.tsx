@@ -25,21 +25,8 @@ function initials(name: string) {
 export default function PortfolioGrid() {
   return (
     <section className="mx-auto max-w-[1280px] px-6 pb-16 pt-12 md:px-10 md:pb-24 md:pt-16">
-        <h1 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white">
-          <SplitText
-            text="Dive into a few projects that represent"
-            onMount
-            stagger={0.035}
-            distance={32}
-          />
-          <br />
-          <SplitText
-            text="my most fulfilling design work."
-            onMount
-            delay={0.22}
-            stagger={0.035}
-            distance={32}
-          />
+        <h1 className="font-display text-[clamp(2.75rem,7vw,7rem)] font-bold leading-[1.2] tracking-[-0.03em] text-white">
+          <SplitText text="Selected Work" onMount stagger={0.09} distance={50} />
         </h1>
 
         <div className="mt-10 grid grid-cols-1 gap-5 md:mt-14 lg:grid-cols-12">
