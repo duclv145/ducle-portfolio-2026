@@ -16,8 +16,15 @@ export default function Education() {
       <div className="border-t border-white/10">
         {education.map((ed, i) => (
           <Reveal key={i} delay={i * 0.04}>
-            <div className="group grid grid-cols-1 gap-3 border-b border-white/10 py-7 transition-colors duration-300 hover:bg-white/[0.02] sm:grid-cols-[1fr_auto] sm:gap-8 sm:px-2">
-              <h3 className="text-lg font-semibold text-white sm:text-xl">{ed.school}</h3>
+            <div className="group grid grid-cols-1 gap-3 border-b border-white/10 py-7 transition-colors duration-300 hover:bg-white/[0.02] sm:grid-cols-[1fr_auto] sm:items-center sm:gap-8 sm:px-2">
+              <h3 className="relative block overflow-hidden text-lg font-semibold sm:text-xl">
+                <span className="block text-white transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
+                  {ed.school}
+                </span>
+                <span className="absolute left-0 top-0 block translate-y-full text-accent transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0">
+                  {ed.school}
+                </span>
+              </h3>
               <div className="flex flex-col gap-1 sm:items-end">
                 {ed.lines.map((line) => (
                   <span key={line} className="text-sm text-neutral-400">

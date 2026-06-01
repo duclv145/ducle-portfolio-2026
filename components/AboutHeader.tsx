@@ -13,14 +13,16 @@ export default function AboutHeader() {
       {/* ── Big title + label on the same row ── */}
       <section className="mx-auto max-w-[1280px] px-6 pb-10 pt-16 md:px-10 md:pb-14 md:pt-24">
         <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
-          <motion.h1
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: EASE }}
-            className="font-display text-[clamp(4rem,15vw,13rem)] font-bold leading-[0.88] tracking-[-0.045em] text-white"
-          >
-            About
-          </motion.h1>
+          <h1 className="overflow-hidden pb-[0.08em] font-display text-[clamp(4rem,15vw,13rem)] font-bold leading-[0.92] tracking-[-0.045em] text-white">
+            <motion.span
+              initial={{ y: "115%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.95, ease: EASE }}
+              className="block"
+            >
+              About
+            </motion.span>
+          </h1>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}

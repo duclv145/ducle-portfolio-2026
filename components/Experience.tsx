@@ -16,12 +16,19 @@ export default function Experience() {
       <div className="border-t border-white/10">
         {experience.map((job, i) => (
           <Reveal key={i} delay={i * 0.04}>
-            <div className="group grid grid-cols-1 gap-2 border-b border-white/10 py-7 transition-colors duration-300 hover:bg-white/[0.02] sm:grid-cols-[200px_1fr] sm:gap-8 sm:px-2">
+            <div className="group grid grid-cols-1 gap-2 border-b border-white/10 py-7 transition-colors duration-300 hover:bg-white/[0.02] sm:grid-cols-[200px_1fr] sm:items-center sm:gap-8 sm:px-2">
               <span className="text-sm font-medium tabular-nums text-neutral-500 transition-colors duration-300 group-hover:text-accent">
                 {job.period}
               </span>
               <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-                <h3 className="text-lg font-semibold text-white sm:text-xl">{job.company}</h3>
+                <h3 className="relative block overflow-hidden text-lg font-semibold sm:text-xl">
+                  <span className="block text-white transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
+                    {job.company}
+                  </span>
+                  <span className="absolute left-0 top-0 block translate-y-full text-accent transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0">
+                    {job.company}
+                  </span>
+                </h3>
                 <span className="shrink-0 text-sm text-neutral-400">{job.role}</span>
               </div>
             </div>

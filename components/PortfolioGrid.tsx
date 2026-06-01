@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "./Motion";
+import SplitText from "./SplitText";
 import { projects, projectSlug } from "@/lib/data";
 
 // Bento rhythm: pairs of halves with occasional full-width rows.
@@ -24,11 +25,14 @@ function initials(name: string) {
 export default function PortfolioGrid() {
   return (
     <section className="mx-auto max-w-[1280px] px-6 pb-16 pt-12 md:px-10 md:pb-24 md:pt-16">
-        <Reveal>
-          <h1 className="max-w-3xl font-display text-[clamp(1.75rem,4vw,3rem)] font-semibold leading-[1.18] tracking-[-0.02em] text-white">
-            Dive into a few projects that represent my most fulfilling design work.
-          </h1>
-        </Reveal>
+        <h1 className="max-w-3xl font-display text-[clamp(1.75rem,4vw,3rem)] font-semibold leading-[1.32] tracking-[-0.02em] text-white">
+          <SplitText
+            text="Dive into a few projects that represent my most fulfilling design work."
+            onMount
+            stagger={0.035}
+            distance={32}
+          />
+        </h1>
 
         <div className="mt-10 grid grid-cols-1 gap-5 md:mt-14 lg:grid-cols-12">
           {projects.map((p, i) => {
@@ -69,10 +73,16 @@ export default function PortfolioGrid() {
                     </div>
                   </div>
                   <div className="mt-4 flex items-center justify-between gap-4">
-                    <span className="text-base font-medium text-white transition-colors duration-300 group-hover:text-accent md:text-lg">
-                      {p.name}
+                    {/* Roll-swap name: white rolls up, lime rolls in */}
+                    <span className="block h-[1.5em] overflow-hidden text-base font-medium md:text-lg">
+                      <span className="flex flex-col transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1/2">
+                        <span className="block h-[1.5em] text-white">{p.name}</span>
+                        <span className="block h-[1.5em] text-accent">{p.name}</span>
+                      </span>
                     </span>
-                    <span className="shrink-0 text-sm text-neutral-500">{p.role}</span>
+                    <span className="shrink-0 text-sm text-neutral-500 transition-colors duration-300 group-hover:text-neutral-300">
+                      {p.role}
+                    </span>
                   </div>
                 </Link>
               </Reveal>

@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal, Stagger, StaggerItem } from "./Motion";
+import SplitText from "./SplitText";
 import { disciplines, tools, interests } from "@/lib/data";
 
 export default function Skills() {
@@ -35,7 +36,9 @@ export default function Skills() {
       <div className="mt-16 grid grid-cols-1 gap-12 md:mt-20 md:grid-cols-2 md:gap-16">
         <div>
           <Reveal className="mb-6">
-            <h3 className="font-display text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.2] tracking-[-0.02em] text-white">Tools</h3>
+            <h3 className="font-display text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.2] tracking-[-0.02em] text-white">
+              <SplitText text="Tools" stagger={0.08} distance={36} />
+            </h3>
           </Reveal>
           <Stagger className="flex flex-wrap gap-3" gap={0.05}>
             {tools.map((t) => (
@@ -50,7 +53,9 @@ export default function Skills() {
         </div>
         <div>
           <Reveal className="mb-6">
-            <h3 className="font-display text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.2] tracking-[-0.02em] text-white">Interests</h3>
+            <h3 className="font-display text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.2] tracking-[-0.02em] text-white">
+              <SplitText text="Interests" stagger={0.08} distance={36} />
+            </h3>
           </Reveal>
           <Stagger className="flex flex-wrap gap-3" gap={0.05}>
             {interests.map((it) => (

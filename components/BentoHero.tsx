@@ -88,8 +88,15 @@ function Card({
   );
 
   if (href) {
+    const external = href.startsWith("http");
     return (
-      <Link href={href} className={cls} {...handlers}>
+      <Link
+        href={href}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noreferrer" : undefined}
+        className={cls}
+        {...handlers}
+      >
         {inner}
       </Link>
     );
@@ -218,7 +225,7 @@ export default function BentoHero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] overflow-hidden bg-[#050505] p-4 text-white md:p-5"
+      className="relative min-h-[100svh] overflow-hidden bg-[#050505] px-4 pb-4 text-white md:px-5 md:pb-5"
     >
       <div
         aria-hidden
@@ -238,17 +245,28 @@ export default function BentoHero() {
         }}
       />
 
-      <header className="relative z-30 flex items-center justify-between px-2 py-2 text-[13px] font-semibold tracking-[-0.035em] text-white/90 md:px-3 md:text-base">
-        <div className="flex items-center gap-12 md:gap-28">
-          <button type="button" onClick={() => scrollToId("home")} className="transition hover:text-white">
-            Duc Le
-          </button>
-          <span className="hidden sm:inline">Senior Graphic Designer</span>
-        </div>
-        <div className="flex items-center gap-10">
-          <span className="hidden sm:inline">Ha Noi • {time}</span>
-          <span className="h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.4)]" />
-        </div>
+      <header className="relative z-30 overflow-hidden px-2 py-4 md:px-3">
+        <motion.div
+          initial={{ y: "110%" }}
+          animate={{ y: "0%" }}
+          transition={{ duration: 0.95, ease: EASE, delay: 0.08 }}
+          className="flex items-center justify-between gap-4 text-[15px] font-medium tracking-[-0.01em] md:text-base"
+        >
+          <div className="flex items-center gap-8 md:gap-16">
+            <button
+              type="button"
+              onClick={() => scrollToId("home")}
+              className="text-white transition-colors hover:text-accent"
+            >
+              Duc Le
+            </button>
+            <span className="hidden text-neutral-400 sm:inline">Senior Graphic Designer</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="hidden tabular-nums text-neutral-400 sm:inline">Ha Noi • {time}</span>
+            <span className="h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.4)]" />
+          </div>
+        </motion.div>
       </header>
 
       <HeroWord word={previewWord ?? "Duc Le"} />
@@ -286,6 +304,7 @@ export default function BentoHero() {
           <Card
             label="Resume"
             id="experience"
+            href="https://drive.google.com/file/d/1cXMvnJ17E-cUKvi-8jYAW9A8Q7DWbmtz/view?usp=sharing"
             onPreview={setPreviewWord}
             className="min-h-[150px] md:min-h-[150px] lg:min-h-0"
           />
