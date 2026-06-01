@@ -249,14 +249,6 @@ export default function BentoHero() {
     >
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-0 opacity-[0.18] md:absolute"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 25% 15%, rgba(255,255,255,0.17), transparent 26%), radial-gradient(circle at 75% 0%, rgba(255,255,255,0.1), transparent 22%), linear-gradient(115deg, transparent 0 45%, rgba(255,255,255,0.04) 46% 47%, transparent 48% 100%)",
-        }}
-      />
-      <div
-        aria-hidden
         className="pointer-events-none fixed inset-0 z-0 opacity-[0.28] md:absolute"
         style={{
           backgroundImage:
