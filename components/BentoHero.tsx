@@ -226,11 +226,11 @@ export default function BentoHero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] overflow-hidden bg-bg px-4 pb-4 text-white md:px-5 md:pb-5"
+      className="relative isolate min-h-[100dvh] w-full overflow-hidden bg-bg px-4 pb-4 text-white md:px-5 md:pb-5"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.18]"
+        className="pointer-events-none fixed inset-0 z-0 opacity-[0.18] md:absolute"
         style={{
           backgroundImage:
             "radial-gradient(circle at 25% 15%, rgba(255,255,255,0.17), transparent 26%), radial-gradient(circle at 75% 0%, rgba(255,255,255,0.1), transparent 22%), linear-gradient(115deg, transparent 0 45%, rgba(255,255,255,0.04) 46% 47%, transparent 48% 100%)",
@@ -238,7 +238,7 @@ export default function BentoHero() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.28]"
+        className="pointer-events-none fixed inset-0 z-0 opacity-[0.28] md:absolute"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E\")",
