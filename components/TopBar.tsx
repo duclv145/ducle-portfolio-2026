@@ -15,7 +15,7 @@ export default function TopBar({
   backLabel?: string;
 }) {
   const [time, setTime] = useState("");
-  const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const tick = () =>
@@ -31,45 +31,64 @@ export default function TopBar({
     return () => window.clearInterval(id);
   }, []);
 
-  // Hide on scroll-down, reveal on scroll-up (always visible near the top).
+  // Once scrolled past the top: fade out the bar background + role + time,
+  // leaving only the back link and theme toggle floating.
   useEffect(() => {
-    let last = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      if (y < 48) setHidden(false);
-      else if (y > last + 6) setHidden(true);
-      else if (y < last - 6) setHidden(false);
-      last = y;
-    };
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const fade = { opacity: scrolled ? 0 : 1 };
+  const fadeT = { duration: 0.35, ease: EASE };
+
   return (
-    <motion.header
-      animate={{ y: hidden ? "-100%" : "0%" }}
-      transition={{ duration: 0.65, ease: EASE }}
-      className="sticky top-0 z-40 overflow-hidden bg-black/70 backdrop-blur-md">
+    <header className="sticky top-0 z-40 overflow-hidden">
+      {/* Background — fades away on scroll */}
+      <motion.div
+        aria-hidden
+        initial={false}
+        animate={fade}
+        transition={fadeT}
+        className="absolute inset-0 border-b border-white/10 bg-black/70 backdrop-blur-md"
+      />
+
+      {/* Content — slides up on enter */}
       <motion.div
         initial={{ y: "110%" }}
         animate={{ y: "0%" }}
         transition={{ duration: 0.95, ease: EASE, delay: 0.08 }}
-        className="flex items-center justify-between gap-4 px-6 py-4 text-[15px] font-medium tracking-[-0.01em] md:px-8 md:text-base"
+        className="relative flex items-center justify-between gap-4 px-6 py-4 text-[15px] font-medium tracking-[-0.01em] md:px-8 md:text-base"
       >
         <div className="flex items-center gap-3 sm:gap-8 md:gap-16">
+          {/* Back link — always visible */}
           <Link
             href={backHref}
             className="flex shrink-0 items-center gap-2 text-white transition-colors hover:text-accent"
           >
             <span aria-hidden>←</span> {backLabel}
           </Link>
-          <span className="text-neutral-400">Senior Graphic Designer</span>
+          <motion.span
+            animate={fade}
+            transition={fadeT}
+            className="text-neutral-400"
+          >
+            Senior Graphic Designer
+          </motion.span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="hidden tabular-nums text-neutral-400 sm:inline">Ha Noi • {time}</span>
+          <motion.span
+            animate={fade}
+            transition={fadeT}
+            className="hidden tabular-nums text-neutral-400 sm:inline"
+          >
+            Ha Noi • {time}
+          </motion.span>
+          {/* Theme toggle — always visible */}
           <ThemeToggle />
         </div>
       </motion.div>
-    </motion.header>
+    </header>
   );
 }

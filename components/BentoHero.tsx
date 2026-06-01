@@ -296,7 +296,7 @@ export default function BentoHero() {
           <div
             onPointerEnter={() => setPreviewWord("Stack")}
             onPointerLeave={() => setPreviewWord(null)}
-            className="relative min-h-[150px] overflow-hidden rounded-[28px] bg-surface/80 shadow-[0_16px_50px_rgba(0,0,0,0.3)] backdrop-blur-md lg:min-h-0"
+            className="relative min-h-[220px] overflow-hidden rounded-[28px] bg-surface/80 shadow-[0_16px_50px_rgba(0,0,0,0.3)] backdrop-blur-md lg:min-h-0"
           >
             <NoiseLayer />
             <StackRail />
@@ -307,7 +307,7 @@ export default function BentoHero() {
             id="experience"
             href="https://drive.google.com/file/d/1cXMvnJ17E-cUKvi-8jYAW9A8Q7DWbmtz/view?usp=sharing"
             onPreview={setPreviewWord}
-            className="min-h-[150px] md:min-h-[150px] lg:min-h-0"
+            className="min-h-[220px] md:min-h-[220px] lg:min-h-0"
           />
         </div>
       </div>
