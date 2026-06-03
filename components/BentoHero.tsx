@@ -324,8 +324,6 @@ export default function BentoHero() {
       id="home"
       className="relative isolate min-h-[100dvh] w-full overflow-hidden bg-bg px-4 pb-4 text-white md:px-5 md:pb-5"
     >
-      <ParticleBackground />
-
       <header className="relative z-30 overflow-hidden px-2 py-4 md:px-3">
         <motion.div
           initial={{ y: "110%" }}
