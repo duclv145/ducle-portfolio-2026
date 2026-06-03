@@ -41,10 +41,12 @@ export default function VideoBackground() {
     return () => video.removeEventListener("canplay", onCanPlay);
   }, []);
 
-  if (isLight) return null;
-
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden transition-opacity duration-700"
+      style={{ opacity: isLight ? 0 : 1 }}
+    >
       <video
         ref={videoRef}
         autoPlay
