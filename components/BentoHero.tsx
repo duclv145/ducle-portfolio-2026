@@ -12,6 +12,83 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const NOISE_URL =
   "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='cn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23cn)' opacity='.55'/%3E%3C/svg%3E\")";
 
+const BACKGROUND_PARTICLES = Array.from({ length: 520 }, (_, index) => {
+  const x = (index * 37 + (index % 11) * 9) % 100;
+  const y = (index * 53 + (index % 13) * 7) % 100;
+  const size = index % 5 === 0 ? 3 : index % 2 === 0 ? 2 : 1;
+  const delay = ((index * 17) % 84) / 10;
+  const duration = 3.6 + ((index * 19) % 38) / 10;
+  const opacity = 0.1 + ((index * 23) % 42) / 100;
+
+  return { x, y, size, delay, duration, opacity };
+});
+
+function ParticleBackground() {
+  return (
+    <>
+      <style>
+        {`
+          #home .particle-field {
+            background: #161616;
+          }
+
+          html.light #home .particle-field {
+            background: #f2f2ef;
+          }
+
+          #home .particle-dot {
+            position: absolute;
+            display: block;
+            border-radius: 1px;
+            background: rgba(255, 255, 255, 0.24);
+            animation-name: particle-twinkle;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            will-change: opacity, transform;
+          }
+
+          html.light #home .particle-dot {
+            background: rgba(17, 17, 17, 0.14);
+          }
+
+          @keyframes particle-twinkle {
+            0%,
+            100% {
+              opacity: 0.08;
+              transform: scale(0.82);
+            }
+            46% {
+              opacity: 0.44;
+              transform: scale(1);
+            }
+            74% {
+              opacity: 0.16;
+              transform: scale(0.9);
+            }
+          }
+        `}
+      </style>
+      <div aria-hidden className="particle-field pointer-events-none fixed inset-0 z-0 overflow-hidden md:absolute">
+        {BACKGROUND_PARTICLES.map((particle, index) => (
+          <span
+            key={index}
+            className="particle-dot"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: particle.size,
+              height: particle.size,
+              opacity: particle.opacity,
+              animationDelay: `${particle.delay}s`,
+              animationDuration: `${particle.duration}s`,
+            }}
+          />
+        ))}
+      </div>
+    </>
+  );
+}
+
 function NoiseLayer({ className = "" }: { className?: string }) {
   return (
     <span
@@ -247,15 +324,7 @@ export default function BentoHero() {
       id="home"
       className="relative isolate min-h-[100dvh] w-full overflow-hidden bg-bg px-4 pb-4 text-white md:px-5 md:pb-5"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 z-0 opacity-[0.28] md:absolute"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E\")",
-          backgroundSize: "180px 180px",
-        }}
-      />
+      <ParticleBackground />
 
       <header className="relative z-30 overflow-hidden px-2 py-4 md:px-3">
         <motion.div
